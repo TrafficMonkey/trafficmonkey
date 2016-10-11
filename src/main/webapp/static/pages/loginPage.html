@@ -1,0 +1,28 @@
+
+<div class="col-md-4"></div>
+
+ <div class="container jumbotron col-md-4" >
+                <form  ng-submit="login()" method="post" >
+                <div class="errorText">{{errorMessage}}</div>
+                <div class="imgcontainer">
+                    <img src="./static/images/img_avatar2.png" alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label><b>Email</b></label>
+                    <input class="round" type="text"  ng-model="loginDetails.email" placeholder="Enter email" name="email" required>
+
+                    <label><b>Password</b></label>
+                    <input  class="round" type="password" ng-model="loginDetails.password" placeholder="Enter Password" name="psw" required>
+                        
+                    <input type="submit" class="btn btn-success"type="submit" value="Login" />
+                    <input type="checkbox" checked="checked" ng-model="loginDetails.isRememberMe"> Remember me
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbtn round">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+                </form>
+
+            </div>
