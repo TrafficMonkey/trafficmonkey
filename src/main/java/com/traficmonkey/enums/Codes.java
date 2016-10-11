@@ -7,7 +7,8 @@ public enum Codes {
 	  /** The system error. */
 	  SYSTEM_ERROR("System.error"),
 
-	  ACCESS_DENIED("app.accessDenied");
+	  ACCESS_DENIED("app.accessDenied"),
+	ALREADY_EXISTS_EMAIL("app.already.exist");
 	  
 	  /** The error code. */
 	  private String errorCode;

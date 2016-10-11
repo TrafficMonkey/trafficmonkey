@@ -1,5 +1,6 @@
 package com.trafficmonkey.controller;
 
+import java.text.MessageFormat;
 import java.util.Properties;
 
 import javax.inject.Inject;
@@ -20,15 +21,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.trafficmonkey.DTO.LoginDTO;
 import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.exception.TrafficMonkeyException;
 import com.trafficmonkey.exception.UnauthorizedException;
+import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.security.jwt.JWTConfigurer;
 import com.trafficmonkey.security.jwt.TokenProvider;
 import com.trafficmonkey.service.RegistrationService;
 import com.traficmonkey.enums.Codes;
 import com.traficmonkey.enums.ResponseKeyName;
+import com.trafficmonkey.exception.BadRequestException;
 @RestController
 public class RegistrationController extends BaseRestController {
 
@@ -48,14 +52,19 @@ public class RegistrationController extends BaseRestController {
 	  private Properties errorProperties;
 	
 	 @RequestMapping(value = "/signUp/", method = RequestMethod.POST)
-	    public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration) throws TrafficMonkeyException{
+	    public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration) throws TrafficMonkeyException,com.trafficmonkey.exception.BadRequestException{
 	        System.out.println("Creating User " + registration.getName());
 	 
 	        /*if (userService.isUserExist(user)) {
 	            System.out.println("A User with name " + user.getUsername() + " already exist");
 	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 	        }*/
-	 
+	        RegistrationModel registrationMode=registrationService.findOneByEmail(registration.getLogin().getEmail());
+	        if(registrationMode!= null){
+	        	  String errorCode = errorProperties.getProperty(Codes.ALREADY_EXISTS_EMAIL.getErrorCode());
+	              String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
+	              throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
+	        }
 	        registrationService.saveUser(registration);
 	 
 	        HttpHeaders headers = new HttpHeaders();

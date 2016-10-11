@@ -4,6 +4,7 @@
 
   <div   class="col-md-4 container Jumbotron round">
   <form ng-submit="submit()" method="post" name="singUpForm" >
+  <div class="errorText">{{errorMessage}}</div>
                     <input class="round" type="text"   ng-model="user.name" name="name" placeholder="Enter Your Name Here" required ng-minlength="3"/>
                     
                     <div class="errorText" ng-show="singUpForm.$dirty">
@@ -24,8 +25,8 @@
                                       <span ng-show="singUpForm.contact.$invalid">This field is invalid </span>
                                   </div>
                     
-                    <input class="round" type="text" ng-model="user.pancard" name="pancard" placeholder="Enter Your Pan Card Number" required>
-                    <input type="checkbox" value="Applied For PanCard" ng-model="user.pancardFlag" name="pancardFlag"> Applied or Pancard<br>
+                    <input class="round" type="text" ng-model="user.panCard" name="pancard" placeholder="Enter Your Pan Card Number" required>
+                    <input type="checkbox" value="Applied For PanCard" ng-model="user.panCardFlag" name="pancardFlag"> Applied or Pancard<br>
                     <input class="round" type="text" ng-model="user.nominee" name="nominee" placeholder="Enter Your Nominee Name Here" required>
                     <input class="round" type="text" placeholder="Enter Sponsor Id" ng-model="user.sponsorId" name="sponsorId" required>
                     <input class="round" type="text" placeholder="Sponsor Name"ng-model="user.sponsorName" name="sponcerName">

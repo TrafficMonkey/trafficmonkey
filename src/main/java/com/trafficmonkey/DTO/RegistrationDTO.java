@@ -2,7 +2,6 @@ package com.trafficmonkey.DTO;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.SortedSet;
@@ -17,21 +16,30 @@ import org.springframework.util.Assert;
 
 
 public class RegistrationDTO implements UserDetails, CredentialsContainer {
+	
+	private static final long serialVersionUID = -740730286795643372L;
+	private Long id;
 	private String name;
 	
 	private String contact;
 	
-	private String pancardFlag;
-	private String pancard;
+	private String panCardFlag;
+	private String panCard;
 	private String nominee;
 	private String sponsorId;
-	private String sponcerName;
+	private String sponsorName;
 	private String position;
 	private String planType;
 	private LoginDTO login;
 	private String termsAndCondition;
 	 private Set<GrantedAuthority> authorities;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -46,18 +54,24 @@ public class RegistrationDTO implements UserDetails, CredentialsContainer {
 		this.contact = contact;
 	}
 	
-	public String getPancardFlag() {
-		return pancardFlag;
-	}
-	public void setPancardFlag(String pancardFlag) {
-		this.pancardFlag = pancardFlag;
-	}
 	
-	public String getPancard() {
-		return pancard;
+	public String getPanCardFlag() {
+		return panCardFlag;
 	}
-	public void setPancard(String pancard) {
-		this.pancard = pancard;
+	public void setPanCardFlag(String panCardFlag) {
+		this.panCardFlag = panCardFlag;
+	}
+	public String getPanCard() {
+		return panCard;
+	}
+	public void setPanCard(String panCard) {
+		this.panCard = panCard;
+	}
+	public String getSponsorName() {
+		return sponsorName;
+	}
+	public void setSponsorName(String sponsorName) {
+		this.sponsorName = sponsorName;
 	}
 	public String getNominee() {
 		return nominee;
@@ -71,12 +85,7 @@ public class RegistrationDTO implements UserDetails, CredentialsContainer {
 	public void setSponsorId(String sponsorId) {
 		this.sponsorId = sponsorId;
 	}
-	public String getSponcerName() {
-		return sponcerName;
-	}
-	public void setSponcerName(String sponcerName) {
-		this.sponcerName = sponcerName;
-	}
+	
 	public String getPosition() {
 		return position;
 	}

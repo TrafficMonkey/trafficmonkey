@@ -1,6 +1,6 @@
 
 
-mainApp.controller('LoginCtrl', ['$scope','LoginService','$location',  function($scope,LoginService,$location,$rootScope)  {
+mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location',  function($rootScope,$scope,LoginService,$location)  {
 	  // $scope.message = "This is view 1";
 	   $scope.loginDetails={email:'', password :'' ,isRememberMe:''};
 	   $scope.errorMessage='';

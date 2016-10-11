@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,16 +22,16 @@ public class RegistrationModel  {
 
 	@Column(name = "contact")
 	private String contact;
-	@Column(name = "pancardFlag")
-	private String pancardFlag;
-	@Column(name = "pancard")
-	private String pancard;
+	@Column(name = "pan_card_Flag")
+	private String panCardFlag;
+	@Column(name = "pan_card")
+	private String panCard;
 	@Column(name = "nominee")
 	private String nominee;
 	@Column(name = "sponsorId")
 	private String sponsorId;
-	@Column(name = "sponcerName")
-	private String sponcerName;
+	@Column(name = "sponsor_name")
+	private String sponsorName;
 	@Column(name = "position")
 	private String position;
 	@Column(name = "planType")
@@ -72,21 +71,7 @@ public class RegistrationModel  {
 
 	
 
-	public String getPancardFlag() {
-		return pancardFlag;
-	}
-
-	public void setPancardFlag(String pancardFlag) {
-		this.pancardFlag = pancardFlag;
-	}
-
-	public String getPancard() {
-		return pancard;
-	}
-
-	public void setPancard(String pancard) {
-		this.pancard = pancard;
-	}
+	
 
 	public String getNominee() {
 		return nominee;
@@ -104,13 +89,7 @@ public class RegistrationModel  {
 		this.sponsorId = sponsorId;
 	}
 
-	public String getSponcerName() {
-		return sponcerName;
-	}
-
-	public void setSponcerName(String sponcerName) {
-		this.sponcerName = sponcerName;
-	}
+	
 
 	public String getPosition() {
 		return position;
@@ -142,6 +121,30 @@ public class RegistrationModel  {
 
 	public void setLoginModel(LoginModel loginModel) {
 		this.loginModel = loginModel;
+	}
+
+	public String getPanCardFlag() {
+		return panCardFlag;
+	}
+
+	public void setPanCardFlag(String panCardFlag) {
+		this.panCardFlag = panCardFlag;
+	}
+
+	public String getPanCard() {
+		return panCard;
+	}
+
+	public void setPanCard(String panCard) {
+		this.panCard = panCard;
+	}
+
+	public String getSponsorName() {
+		return sponsorName;
+	}
+
+	public void setSponsorName(String sponsorName) {
+		this.sponsorName = sponsorName;
 	}
 
 }
