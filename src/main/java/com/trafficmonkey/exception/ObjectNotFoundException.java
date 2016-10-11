@@ -1,12 +1,4 @@
-/******************************************************************
- *  
- * This code is for the Do Process Practice Management (DPPM) project.
- *
- * 
- * © 2016, Do Process Practice Management All rights reserved. 
- * 
- * 
- ******************************************************************/
+
 
 package com.trafficmonkey.exception;
 
@@ -18,7 +10,7 @@ import com.traficmonkey.enums.Codes;
  * caller about the object that the calling is search for is not found in application . Custom field like error code has
  * been added to this class for tracking purpose.
  * 
- * @author jlee95
+ * 
  *
  */
 public class ObjectNotFoundException extends TrafficMonkeyException {
