@@ -29,6 +29,7 @@ import com.trafficmonkey.exception.UnauthorizedException;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.security.jwt.JWTConfigurer;
 import com.trafficmonkey.security.jwt.TokenProvider;
+import com.trafficmonkey.service.MailService;
 import com.trafficmonkey.service.RegistrationService;
 import com.traficmonkey.enums.Codes;
 import com.traficmonkey.enums.ResponseKeyName;
@@ -50,6 +51,9 @@ public class RegistrationController extends BaseRestController {
 	  @Autowired
 	  @Qualifier("errorProperties")
 	  private Properties errorProperties;
+	  
+	  @Autowired
+	private MailService mailService;
 	
 	 @RequestMapping(value = "/signUp/", method = RequestMethod.POST)
 	    public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration) throws TrafficMonkeyException,com.trafficmonkey.exception.BadRequestException{
@@ -65,6 +69,8 @@ public class RegistrationController extends BaseRestController {
 	              String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
 	              throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
 	        }
+	        mailService.sendEmail(registration);
+	        
 	        registrationService.saveUser(registration);
 	 
 	        HttpHeaders headers = new HttpHeaders();

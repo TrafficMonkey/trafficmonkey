@@ -8,6 +8,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -44,5 +46,23 @@ public class AppConfiguration extends WebMvcConfigurerAdapter{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	}
-
+	  @Bean
+	    public JavaMailSender getMailSender(){
+	        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	         
+	        //Using gmail
+	        mailSender.setHost("smtp.gmail.com");
+	        mailSender.setPort(587);
+	        mailSender.setUsername("patel2810shweta@gmail.com");
+	        mailSender.setPassword("offspiner1");
+	         
+	        Properties javaMailProperties = new Properties();
+	        javaMailProperties.put("mail.smtp.starttls.enable", "true");
+	        javaMailProperties.put("mail.smtp.auth", "true");
+	        javaMailProperties.put("mail.transport.protocol", "smtp");
+	        javaMailProperties.put("mail.debug", "true");//Prints out everything on screen
+	         
+	        mailSender.setJavaMailProperties(javaMailProperties);
+	        return mailSender;
+	    }
 }
