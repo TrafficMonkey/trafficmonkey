@@ -10,7 +10,7 @@ mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location
 			
 	        .then(
 	        		function(d) {
-	        			//console.log(d.headers);
+	        			
 	        			$rootScope.test=d
 	        		$location.path('dashboard')
 	        		},
