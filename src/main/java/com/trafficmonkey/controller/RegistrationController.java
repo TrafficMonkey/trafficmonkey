@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.trafficmonkey.DTO.LoginDTO;
 import com.trafficmonkey.DTO.RegistrationDTO;
+import com.trafficmonkey.exception.BadRequestException;
 import com.trafficmonkey.exception.TrafficMonkeyException;
 import com.trafficmonkey.exception.UnauthorizedException;
 import com.trafficmonkey.model.RegistrationModel;
@@ -33,98 +33,77 @@ import com.trafficmonkey.service.MailService;
 import com.trafficmonkey.service.RegistrationService;
 import com.traficmonkey.enums.Codes;
 import com.traficmonkey.enums.ResponseKeyName;
-import com.trafficmonkey.exception.BadRequestException;
+
 @RestController
 public class RegistrationController extends BaseRestController {
 
 	@Inject
 	private RegistrationService registrationService;
-	 /** The token provider. */
-	  @Inject
-	  private TokenProvider tokenProvider;
+	/** The token provider. */
+	@Inject
+	private TokenProvider tokenProvider;
 
-	  /** The authentication manager. */
-	  @Inject
-	  private AuthenticationManager authenticationManager;
-	  
-	  /** The error properties. */
-	  @Autowired
-	  @Qualifier("errorProperties")
-	  private Properties errorProperties;
-	  
-	  @Autowired
+	/** The authentication manager. */
+	@Inject
+	private AuthenticationManager authenticationManager;
+
+	/** The error properties. */
+	@Autowired
+	@Qualifier("errorProperties")
+	private Properties errorProperties;
+
+	@Autowired
 	private MailService mailService;
-	
-	 @RequestMapping(value = "/signUp/", method = RequestMethod.POST)
-	    public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration) throws TrafficMonkeyException,com.trafficmonkey.exception.BadRequestException{
-	        System.out.println("Creating User " + registration.getName());
-	 
-	        /*if (userService.isUserExist(user)) {
-	            System.out.println("A User with name " + user.getUsername() + " already exist");
-	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-	        }*/
-	        RegistrationModel registrationMode=registrationService.findOneByEmail(registration.getLogin().getEmail());
-	        if(registrationMode!= null){
-	        	  String errorCode = errorProperties.getProperty(Codes.ALREADY_EXISTS_EMAIL.getErrorCode());
-	              String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
-	              throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
-	        }
-	        mailService.sendEmail(registration);
-	        
-	        registrationService.saveUser(registration);
-	 
-	        HttpHeaders headers = new HttpHeaders();
-	       // headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
-	        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
-	    }
-	 
-	 
-	 @RequestMapping(value = "/login/", method = RequestMethod.POST)
-	    public ResponseEntity<Object> authenticateUser(@RequestBody LoginDTO loginDTO,     HttpServletResponse response) throws TrafficMonkeyException {
-	        System.out.println("Authenticate user " + loginDTO.getEmail());
-	 System.out.println(Codes.INVALID_CREDENTIALS);
 
+	@SuppressWarnings("static-access")
+	@RequestMapping(value = "/signUp/", method = RequestMethod.POST)
+	public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration)
+			throws TrafficMonkeyException, com.trafficmonkey.exception.BadRequestException {
+		RegistrationModel registrationMode = registrationService.findOneByEmail(registration.getLogin().getEmail());
+		if (registrationMode != null) {
+			String errorCode = errorProperties.getProperty(Codes.ALREADY_EXISTS_EMAIL.getErrorCode());
+			String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
+			throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
+		}
+		
+		mailService.sendEmail(registration);
+		registration = registrationService.saveUser(registration);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+	}
 
-	        String userNameForAuthentication = null;
+	@RequestMapping(value = "/login/", method = RequestMethod.POST)
+	public ResponseEntity<Object> authenticateUser(@RequestBody LoginDTO loginDTO, HttpServletResponse response)
+			throws TrafficMonkeyException {
+		String userNameForAuthentication = null;
+		// Checking whether the email and public account id are exists in the
+		// login object or not
+		if (!StringUtils.isEmpty(loginDTO.getEmail())) {
+			userNameForAuthentication = loginDTO.getEmail().trim();
+		}
+		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+				userNameForAuthentication, loginDTO.getPassword());
+		try {
+			// Authenticating with authentication token
+			Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
+			RegistrationDTO registration = (RegistrationDTO) authentication.getPrincipal();
+			boolean rememberMe = (loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe();
 
-	        // Checking whether the email and public account id are exists in the login object or not
-	        if (!StringUtils.isEmpty(loginDTO.getEmail())) {
-	          userNameForAuthentication = loginDTO.getEmail().trim() ;
-	        }
+			// Creating token
+			String jwt = tokenProvider.createToken(authentication, rememberMe, registration.getLogin());
 
-	        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-	            userNameForAuthentication, loginDTO.getPassword());
+			// log.error("Token sucessfully created");
 
-	        try {
-	        	
+			response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
 
-	          // Authenticating with authentication token
-	          Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
-	         // log.error("got authentication object from user details service");
-	    
-	          RegistrationDTO registration =  (RegistrationDTO) authentication.getPrincipal();
+			// log.debug("User logged successfully - " + user);
+			return ResponseEntity.ok(createSuccessResponse(ResponseKeyName.USER, registration));
+		} catch (AuthenticationException exception) {
+			exception.printStackTrace();
+			throw new UnauthorizedException(Codes.INVALID_CREDENTIALS);
 
-	          boolean rememberMe = (loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe();
+		}
 
-	        //  log.error("Going to create JWT token");
+	}
 
-	          // Creating token
-	          String jwt = tokenProvider.createToken(authentication, rememberMe, registration.getLogin());
-
-	          //log.error("Token sucessfully created");
-
-	          response.addHeader(JWTConfigurer.AUTHORIZATION_HEADER, "Bearer " + jwt);
-
-	         // log.debug("User logged successfully - " + user);
-	          return ResponseEntity.ok(createSuccessResponse(ResponseKeyName.USER, registration));
-	        } catch (AuthenticationException exception) {
-	          exception.printStackTrace();
-	          throw new UnauthorizedException(Codes.INVALID_CREDENTIALS);
-
-	        }
-	      
-	    }
-	 
-	 
-	 
 }

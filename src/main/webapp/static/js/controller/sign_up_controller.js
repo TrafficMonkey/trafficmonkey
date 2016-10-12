@@ -2,13 +2,14 @@
 'use strict';
 
 
-mainApp.controller('SignUpCtrl', ['$scope','SignUpService','$location',  function($scope,SignUpService,$location) {
+mainApp.controller('SignUpCtrl', ['$rootScope','$scope','SignUpService','$location',  function($rootScope,$scope,SignUpService,$location) {
     
    
   
 	$scope.errorMessage=''
+		$scope.message=''
 
-	$scope.user={name:'a',login:{email:'a',password:'a'},contact:'a',panCardFlag:'true',panCard:'a',nominee:'a',sponsorId:'a',sponsorName:'a',position:'', planType:'',termsAndCondition:'a'}
+	$scope.user={name:'a',login:{email:'a',password:'a'},sponsorId:'a',sponsorName:'a',position:'', planType:'',termsAndCondition:'a'}
         
     
 	$scope.submit = function() {
@@ -19,7 +20,9 @@ mainApp.controller('SignUpCtrl', ['$scope','SignUpService','$location',  functio
         		
         		function(d) {
         			$rootScope.test=d
-        		  $location.path('dashboard')
+        			$scope.message='You are successfully register in Trafficmonkey'
+        		  //$location.path('dashboard')
+        			
         		},
 	              function(errResponse){
 		               console.error('Error while creating User.');

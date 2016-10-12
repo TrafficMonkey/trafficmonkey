@@ -14,15 +14,15 @@
 
                     <label><b>Password</b></label>
                     <input  class="round" type="password" ng-model="loginDetails.password" placeholder="Enter Password" name="psw" required>
-                        
-                    <input type="submit" class="btn btn-success"type="submit" value="Login" />
-                    <input type="checkbox" checked="checked" ng-model="loginDetails.isRememberMe"> Remember me
+                    <div class="container">  
+	                    <input type="submit" class="btn btn-success"type="submit" value="Login" />
+	                    <input type="checkbox" checked="checked" ng-model="loginDetails.isRememberMe"> Remember me
+	                    
+                    	<span class="psw">Forgot <a href="#">password?</a></span>
+                    </div>
                 </div>
 
-                <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" class="cancelbtn round">Cancel</button>
-                    <span class="psw">Forgot <a href="#">password?</a></span>
-                </div>
+                
                 </form>
 
             </div>

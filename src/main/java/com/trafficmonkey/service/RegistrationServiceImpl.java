@@ -1,14 +1,14 @@
 package com.trafficmonkey.service;
 
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.trafficmonkey.DTO.LoginDTO;
 import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.model.LoginModel;
 import com.trafficmonkey.model.RegistrationModel;
@@ -22,15 +22,22 @@ private  RegistrationRepository registrationRepository;
   @Inject
   private PasswordEncoder passwordEncoder;
 
- public void saveUser(RegistrationDTO registration) {
+ public RegistrationDTO saveUser(RegistrationDTO registration) {
 		
 		RegistrationModel registrationModel=new RegistrationModel();
+		String sponsorId = registration.getName().substring(0, 3);
+		Date currentDate = new Date();
+		sponsorId = sponsorId + currentDate.getDate() + currentDate.getHours() + currentDate.getMinutes();
+		registration.setSponsorId(sponsorId);
 		BeanUtils.copyProperties(registration, registrationModel);
+		
 		LoginModel loginModel = new LoginModel();
 		loginModel.setEmail(registration.getLogin().getEmail());
 		loginModel.setPassword(passwordEncoder.encode(registration.getLogin().getPassword()));
 		registrationModel.setLoginModel(loginModel);
 		registrationModel=	registrationRepository.save(registrationModel);
+		BeanUtils.copyProperties(registrationModel, registration);
+		return registration;
 	
 		
 	}

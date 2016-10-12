@@ -30,8 +30,6 @@ public class RegistrationModel  {
 	private String nominee;
 	@Column(name = "sponsorId")
 	private String sponsorId;
-	@Column(name = "sponsor_name")
-	private String sponsorName;
 	@Column(name = "position")
 	private String position;
 	@Column(name = "planType")
@@ -139,12 +137,6 @@ public class RegistrationModel  {
 		this.panCard = panCard;
 	}
 
-	public String getSponsorName() {
-		return sponsorName;
-	}
-
-	public void setSponsorName(String sponsorName) {
-		this.sponsorName = sponsorName;
-	}
+	
 
 }

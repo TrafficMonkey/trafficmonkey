@@ -7,11 +7,12 @@
 
 </head>
 
-<body>
+<body class="background">
 
-	<div ng-app="mainApp" class="ng-cloak">
 
-		<div class="navbar navbar-inverse navbar-fixed-top">
+	<div ng-app="mainApp" >
+
+		<div ng-app="mainApp" class="navbar navbar-inverse navbar-fixed-top">
 			<a href="#home" class="navbar-brand"> TrafficMonkey.com </a>
 			<button class=" navbar navbar-toggle" data-toggle="collapse"
 				data-target=".navheadercollapse">
@@ -37,7 +38,7 @@
 
 
 
-		<div ng-view style="margin-top: 100px;"></div>
+		<div ng-view style="margin-top: 70px;"></div>
 
 
 

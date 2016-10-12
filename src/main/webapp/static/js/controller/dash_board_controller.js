@@ -2,9 +2,9 @@ mainApp.controller('DashBoardCtrl', ['$rootScope','$scope', function($rootScope,
     
    
   
-$scope.test=$rootScope.test;
+    $scope.test=$rootScope.test;
 
-  $scope.name= $scope.test.USER.name;
+    //$scope.name= $scope.test.USER.name;
   
 
 }]);
