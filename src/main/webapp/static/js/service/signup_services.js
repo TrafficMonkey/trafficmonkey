@@ -19,8 +19,22 @@ mainApp.factory('SignUpService', ['$http', '$q', function($http, $q){
 							);
 		    },
 		    
-		   
+		   getSponserName:function(sponserId){
+			   console.log("SponsorID");
+			   console.log(sponserId)
+	return $http.get('http://localhost:8080/trafficmonkey/sponsorId/?sponsorId='+sponserId)
+	.then(
+			function(response){
+				return response.data;
+			},
+			function(errResponse){
+				return $q.reject(errResponse);
+			}
+	);
+		   },
 		
 	};
+	
+	
 
 }]);

@@ -5,5 +5,6 @@ import com.trafficmonkey.model.RegistrationModel;
 
 public interface RegistrationService {
 	RegistrationDTO saveUser(RegistrationDTO registration);
-	 RegistrationModel findOneByEmail(String email);
+	RegistrationModel findOneByEmail(String email);
+	RegistrationModel getSponsorName(String sponsorId);
 }

@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.model.LoginModel;
+import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.repository.RegistrationRepository;
 
@@ -32,9 +33,13 @@ private  RegistrationRepository registrationRepository;
 		BeanUtils.copyProperties(registration, registrationModel);
 		
 		LoginModel loginModel = new LoginModel();
+		ParentChildModel parentChildModel=new ParentChildModel();
 		loginModel.setEmail(registration.getLogin().getEmail());
 		loginModel.setPassword(passwordEncoder.encode(registration.getLogin().getPassword()));
 		registrationModel.setLoginModel(loginModel);
+		parentChildModel.setChildId(registration.getParentChild().getChildId());
+		parentChildModel.setParentId(registration.getParentChild().getParentId());
+		registrationModel.setParentChildModel(parentChildModel);
 		registrationModel=	registrationRepository.save(registrationModel);
 		BeanUtils.copyProperties(registrationModel, registration);
 		return registration;
@@ -49,4 +54,8 @@ private  RegistrationRepository registrationRepository;
 
 	    return userAccountProfile;
 	  }
+ public RegistrationModel getSponsorName(String sponsorId){
+	 RegistrationModel registrationModel=registrationRepository.findBySponsorId(sponsorId);
+	 return  registrationModel;
+ }
 }

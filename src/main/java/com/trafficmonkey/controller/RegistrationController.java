@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,9 +20,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trafficmonkey.DTO.LoginDTO;
+import com.trafficmonkey.DTO.ParentChildDTO;
 import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.exception.BadRequestException;
 import com.trafficmonkey.exception.TrafficMonkeyException;
@@ -30,6 +33,7 @@ import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.security.jwt.JWTConfigurer;
 import com.trafficmonkey.security.jwt.TokenProvider;
 import com.trafficmonkey.service.MailService;
+import com.trafficmonkey.service.ParentChildService;
 import com.trafficmonkey.service.RegistrationService;
 import com.traficmonkey.enums.Codes;
 import com.traficmonkey.enums.ResponseKeyName;
@@ -37,6 +41,9 @@ import com.traficmonkey.enums.ResponseKeyName;
 @RestController
 public class RegistrationController extends BaseRestController {
 
+	@Inject
+	private ParentChildService parentChildService;
+	
 	@Inject
 	private RegistrationService registrationService;
 	/** The token provider. */
@@ -55,7 +62,7 @@ public class RegistrationController extends BaseRestController {
 	@Autowired
 	private MailService mailService;
 
-	@SuppressWarnings("static-access")
+	@SuppressWarnings(value = { "" })
 	@RequestMapping(value = "/signUp/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration)
 			throws TrafficMonkeyException, com.trafficmonkey.exception.BadRequestException {
@@ -65,9 +72,24 @@ public class RegistrationController extends BaseRestController {
 			String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
 			throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
 		}
-		
+		Long parentId=registration.getParentChild().getParentId();
 		mailService.sendEmail(registration);
+		
+		ParentChildDTO parentChild=new ParentChildDTO();
+		if(parentId!=null || parentId!= 0) {
+			
+			parentChild.setParentId(parentId);
+			parentChild.setChildId(registration.getId());
+		}
+		else {
+			parentChild.setParentId(registration.getId());
+			
+			
+		}
+		registration.setParentChild(parentChild);
 		registration = registrationService.saveUser(registration);
+		//parentChildService.saveParentChild(parentChild);
+		
 		HttpHeaders headers = new HttpHeaders();
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
@@ -106,4 +128,19 @@ public class RegistrationController extends BaseRestController {
 
 	}
 
+	
+	@RequestMapping(value = "/sponsorId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> getSponsorName(
+		      @RequestParam(value = "sponsorId", required = true) String sponsorId) throws BadRequestException {
+		RegistrationModel registration=registrationService.getSponsorName(sponsorId);
+		if(registration!=null){
+			 return ResponseEntity.ok(createSuccessResponse(ResponseKeyName.SPONSOR, registration));
+		}
+		else{
+		String errorCode = errorProperties.getProperty(Codes.NOT_EXIST_SPONSOR_ID.getErrorCode());
+		String errorMessage = MessageFormat.format(errorCode,sponsorId );
+		throw new BadRequestException(Codes.NOT_EXIST_SPONSOR_ID, errorMessage);
+		}
+		
+	}
 }

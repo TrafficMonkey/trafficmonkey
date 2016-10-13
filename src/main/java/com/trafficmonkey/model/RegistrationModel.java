@@ -41,6 +41,10 @@ public class RegistrationModel  {
 	  @JoinColumn(name = "login_id" ) 
 	
 	private LoginModel loginModel;
+	@OneToOne(cascade=CascadeType.ALL)
+	 @JoinColumn(name = "id" ) 
+	private ParentChildModel parentChildModel;
+	
 	public Long getId() {
 		return id;
 	}
@@ -135,6 +139,14 @@ public class RegistrationModel  {
 
 	public void setPanCard(String panCard) {
 		this.panCard = panCard;
+	}
+
+	public ParentChildModel getParentChildModel() {
+		return parentChildModel;
+	}
+
+	public void setParentChildModel(ParentChildModel parentChildModel) {
+		this.parentChildModel = parentChildModel;
 	}
 
 	

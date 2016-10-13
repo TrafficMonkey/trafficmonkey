@@ -32,6 +32,9 @@ public class RegistrationDTO implements UserDetails, CredentialsContainer {
 	private String planType;
 	private LoginDTO login;
 	private String termsAndCondition;
+	//private Long parentId;
+	private ParentChildDTO  parentChild;
+	
 	 private Set<GrantedAuthority> authorities;
 	
 	public Long getId() {
@@ -131,6 +134,7 @@ public class RegistrationDTO implements UserDetails, CredentialsContainer {
 		// TODO Auto-generated method stub
 		return login.getPassword();
 	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
@@ -195,4 +199,11 @@ public class RegistrationDTO implements UserDetails, CredentialsContainer {
 	      return g1.getAuthority().compareTo(g2.getAuthority());
 	    }
 	  }
+
+	public ParentChildDTO getParentChild() {
+		return parentChild;
+	}
+	public void setParentChild(ParentChildDTO parentChild) {
+		this.parentChild = parentChild;
+	}
 }
