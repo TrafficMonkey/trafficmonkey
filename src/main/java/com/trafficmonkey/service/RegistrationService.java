@@ -1,10 +1,11 @@
 package com.trafficmonkey.service;
 
-import com.trafficmonkey.DTO.RegistrationDTO;
+import com.trafficmonkey.DTO.ParentChildDTO;
+import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 
 public interface RegistrationService {
-	RegistrationDTO saveUser(RegistrationDTO registration);
+	ParentChildModel saveUser(ParentChildDTO parentChildDto);
 	RegistrationModel findOneByEmail(String email);
 	RegistrationModel getSponsorName(String sponsorId);
 }

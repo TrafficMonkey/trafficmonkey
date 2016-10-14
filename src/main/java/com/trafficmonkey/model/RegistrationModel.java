@@ -15,6 +15,7 @@ import javax.persistence.Table;
 public class RegistrationModel  {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "registration_id", unique = true, nullable = false)
 	private Long id;
 
 	@Column(name = "name")
@@ -41,9 +42,7 @@ public class RegistrationModel  {
 	  @JoinColumn(name = "login_id" ) 
 	
 	private LoginModel loginModel;
-	@OneToOne(cascade=CascadeType.ALL)
-	 @JoinColumn(name = "id" ) 
-	private ParentChildModel parentChildModel;
+	
 	
 	public Long getId() {
 		return id;
@@ -141,13 +140,7 @@ public class RegistrationModel  {
 		this.panCard = panCard;
 	}
 
-	public ParentChildModel getParentChildModel() {
-		return parentChildModel;
-	}
-
-	public void setParentChildModel(ParentChildModel parentChildModel) {
-		this.parentChildModel = parentChildModel;
-	}
+	
 
 	
 

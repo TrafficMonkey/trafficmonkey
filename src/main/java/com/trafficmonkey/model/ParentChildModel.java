@@ -1,10 +1,13 @@
 package com.trafficmonkey.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +19,21 @@ public class ParentChildModel {
 	private Long Id;
 	@Column(name="parent_id")
 	private Long parentId;
-	@Column(name="child_id")
+	@Column(name="node")
+	private String position;
+	 @Column(name="sponsorId")
+	 private String sponsorId;
+	 public String getSponsorId() {
+		return sponsorId;
+	}
+	public void setSponsorId(String sponsorId) {
+		this.sponsorId = sponsorId;
+	}
+	@OneToOne(cascade=CascadeType.ALL)
+	 @JoinColumn(name = "registration_id" )
+	// @Column(name="childId")
+	private RegistrationModel registration;
 	
-	
-	private Long childId;
 	public Long getId() {
 		return Id;
 	}
@@ -32,12 +46,19 @@ public class ParentChildModel {
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
-	public Long getChildId() {
-		return childId;
+	public String getPosition() {
+		return position;
 	}
-	public void setChildId(Long childId) {
-		this.childId = childId;
+	public void setPosition(String position) {
+		this.position = position;
 	}
+	public RegistrationModel getRegistration() {
+		return registration;
+	}
+	public void setRegistration(RegistrationModel registration) {
+		this.registration = registration;
+	}
+	
 	
 
 }

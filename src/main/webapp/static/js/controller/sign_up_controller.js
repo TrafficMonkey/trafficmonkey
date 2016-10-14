@@ -9,7 +9,7 @@ mainApp.controller('SignUpCtrl', ['$rootScope','$scope','SignUpService','$locati
 	$scope.errorMessage=''
 		$scope.message=''
 
-	$scope.user={name:'a',login:{email:'a',password:'a'},parentChild:{parentId:0},sponsorId:'a',sponsorName:'a',position:'', planType:'',termsAndCondition:'a',}
+	$scope.user={parentId:0,position:'',sponsorId:'',sponserName:'',registration:{name:'',login:{email:'',password:''}, planType:'STP-10',termsAndCondition:true,}}
         
 	
 	$scope.submit = function() {
@@ -42,7 +42,7 @@ mainApp.controller('SignUpCtrl', ['$rootScope','$scope','SignUpService','$locati
     	{
     		$scope.errorMessage='';
     		$scope.user.sponsorName=d.SPONSOR.name;
-    		$scope.user.parentChild.parentId=d.SPONSOR.id
+    		$scope.user.parentId=d.SPONSOR.id
     	},
     	function(errResponse){
     	

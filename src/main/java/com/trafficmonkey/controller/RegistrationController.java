@@ -64,32 +64,17 @@ public class RegistrationController extends BaseRestController {
 
 	@SuppressWarnings(value = { "" })
 	@RequestMapping(value = "/signUp/", method = RequestMethod.POST)
-	public ResponseEntity<Void> createUser(@RequestBody RegistrationDTO registration)
+	public ResponseEntity<Void> createUser(@RequestBody ParentChildDTO parentChildDto)
 			throws TrafficMonkeyException, com.trafficmonkey.exception.BadRequestException {
-		RegistrationModel registrationMode = registrationService.findOneByEmail(registration.getLogin().getEmail());
+		RegistrationModel registrationMode = registrationService.findOneByEmail(parentChildDto.getRegistration().getLogin().getEmail());
 		if (registrationMode != null) {
 			String errorCode = errorProperties.getProperty(Codes.ALREADY_EXISTS_EMAIL.getErrorCode());
-			String errorMessage = MessageFormat.format(errorCode, registration.getLogin().getEmail());
+			String errorMessage = MessageFormat.format(errorCode, parentChildDto.getRegistration().getLogin().getEmail());
 			throw new BadRequestException(Codes.ALREADY_EXISTS_EMAIL, errorMessage);
 		}
-		Long parentId=registration.getParentChild().getParentId();
-		mailService.sendEmail(registration);
-		
-		ParentChildDTO parentChild=new ParentChildDTO();
-		if(parentId!=null || parentId!= 0) {
-			
-			parentChild.setParentId(parentId);
-			parentChild.setChildId(registration.getId());
-		}
-		else {
-			parentChild.setParentId(registration.getId());
-			
-			
-		}
-		registration.setParentChild(parentChild);
-		registration = registrationService.saveUser(registration);
-		//parentChildService.saveParentChild(parentChild);
-		
+		//Long parentId=parentChildDto.getRegistration().getLogin().getEmail();
+		mailService.sendEmail(parentChildDto.getRegistration());
+		registrationService.saveUser(parentChildDto);
 		HttpHeaders headers = new HttpHeaders();
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}

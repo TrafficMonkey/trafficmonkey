@@ -1,11 +1,12 @@
 package com.trafficmonkey.DTO;
 
-import javax.persistence.Column;
-
 public class ParentChildDTO {
 	private Long Id;
 	private Long parentId;
-	private Long childId;
+	private String position ;
+	private String sponsorId;
+	private RegistrationDTO registration;
+	
 	
 	
 	public Long getId() {
@@ -20,10 +21,23 @@ public class ParentChildDTO {
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
-	public Long getChildId() {
-		return childId;
+	public String getPosition() {
+		return position;
 	}
-	public void setChildId(Long childId) {
-		this.childId = childId;
+	public void setPosition(String position) {
+		this.position = position;
 	}
+	public RegistrationDTO getRegistration() {
+		return registration;
+	}
+	public void setRegistration(RegistrationDTO registration) {
+		this.registration = registration;
+	}
+	public String getSponsorId() {
+		return sponsorId;
+	}
+	public void setSponsorId(String sponsorId) {
+		this.sponsorId = sponsorId;
+	}
+	
 }
