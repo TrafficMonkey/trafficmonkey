@@ -4,30 +4,35 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+//import com.trafficmonkey.utils.CalculateParentId;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficmonkey.DTO.ParentChildDTO;
-import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.model.LoginModel;
 import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.repository.ParentChildRepository;
 import com.trafficmonkey.repository.RegistrationRepository;
+import com.trafficmonkey.utils.ParentIdCalculate;
+
+
 
 @Service
 @Transactional
 public class RegistrationServiceImpl implements RegistrationService {
-	@Inject
-
-	private  ParentChildRepository parentChildRepository;
   @Inject
-private  RegistrationRepository registrationRepository;
+  private  ParentChildRepository parentChildRepository;
+  @Inject
+  private  RegistrationRepository registrationRepository;
   @Inject
   private PasswordEncoder passwordEncoder;
-
+  @Inject
+  ParentIdCalculate parentIdCalculate;
+ 
  public ParentChildModel saveUser(ParentChildDTO parentChildDto) {
 		
 	    ParentChildModel parentChildModel=new ParentChildModel();
@@ -35,8 +40,8 @@ private  RegistrationRepository registrationRepository;
 		String sponsorId = parentChildDto.getRegistration().getName().substring(0,3);
 		Date currentDate = new Date();
 		sponsorId = sponsorId + currentDate.getDate() + currentDate.getHours() + currentDate.getMinutes();
-		
-		
+		if(StringUtils.isNotEmpty(parentChildDto.getSponsorId()))
+		parentChildDto.setParentId(parentIdCalculate.returnParentId(parentChildDto));
 		//registration.setSponsorId(sponsorId);
 		BeanUtils.copyProperties(parentChildDto, parentChildModel);
 		

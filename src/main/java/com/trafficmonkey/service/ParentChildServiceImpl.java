@@ -20,7 +20,13 @@ public class ParentChildServiceImpl implements ParentChildService {
 	public void saveParentChild(ParentChildDTO parentChild) {
 		ParentChildModel parentChildModel = new ParentChildModel();
 		BeanUtils.copyProperties(parentChild, parentChildModel);
-	   parentChildRepository.save(parentChildModel);
+	    parentChildRepository.save(parentChildModel);
+	}
+	@Override
+	public ParentChildModel findOneByEmail(String email){
+		ParentChildModel parentChildModel=parentChildRepository.findOneByEmail(email);
+		return parentChildModel;
+		
 	}
 
 }

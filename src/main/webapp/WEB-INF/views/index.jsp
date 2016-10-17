@@ -78,7 +78,8 @@
 		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="static/js/controller/sign_up_controller.js"></script>
 	<script src="static/js/controller/login_controller.js"></script>
-	<script src="static/js/controller/dash_board_controller.js"></script>
+	<script src="static/js/controller/dashboard_controller.js"></script>
+	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
 	<script src="static/js/service/login_service.js"></script>
 

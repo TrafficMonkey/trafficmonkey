@@ -41,8 +41,6 @@ import com.traficmonkey.enums.ResponseKeyName;
 @RestController
 public class RegistrationController extends BaseRestController {
 
-	@Inject
-	private ParentChildService parentChildService;
 	
 	@Inject
 	private RegistrationService registrationService;
@@ -93,11 +91,11 @@ public class RegistrationController extends BaseRestController {
 		try {
 			// Authenticating with authentication token
 			Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
-			RegistrationDTO registration = (RegistrationDTO) authentication.getPrincipal();
+			ParentChildDTO registration = (ParentChildDTO) authentication.getPrincipal();
 			boolean rememberMe = (loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe();
 
 			// Creating token
-			String jwt = tokenProvider.createToken(authentication, rememberMe, registration.getLogin());
+			String jwt = tokenProvider.createToken(authentication, rememberMe, registration.getRegistration().getLogin());
 
 			// log.error("Token sucessfully created");
 

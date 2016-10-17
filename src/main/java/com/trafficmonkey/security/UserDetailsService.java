@@ -20,8 +20,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficmonkey.DTO.LoginDTO;
+import com.trafficmonkey.DTO.ParentChildDTO;
 import com.trafficmonkey.DTO.RegistrationDTO;
+import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
+import com.trafficmonkey.service.ParentChildService;
 import com.trafficmonkey.service.RegistrationService;
 
 /**
@@ -35,7 +38,7 @@ public class UserDetailsService implements org.springframework.security.core.use
 
   /** The user repository. */
   @Inject
-  private RegistrationService registrationService;
+  private ParentChildService parentChildService;
 
   /*
    * (non-Javadoc)
@@ -47,7 +50,7 @@ public class UserDetailsService implements org.springframework.security.core.use
   public UserDetails loadUserByUsername(final String userNameForAuthentication) {
     //log.debug("Authenticating {}", userNameForAuthentication);
 	  
-    RegistrationDTO  user=null;
+    ParentChildDTO  user=null;
     //Get userNameForAuthentication as the format of email_accountid
     String[] tokens = StringUtils.split(userNameForAuthentication, "_");
 
@@ -55,8 +58,7 @@ public class UserDetailsService implements org.springframework.security.core.use
    // String publicAccountId = tokens[1];
 
     //Load user profile from database using account id and email
-    RegistrationModel userProfile = registrationService.findOneByEmail(lowercaseEmailLogin)
-    		;
+    ParentChildModel userProfile = parentChildService.findOneByEmail(lowercaseEmailLogin);
 
    // com.doprocess.dppm.web.api.dto.User user = null;
     if (userProfile != null) {
@@ -69,7 +71,7 @@ public class UserDetailsService implements org.springframework.security.core.use
       grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
       //Map user account profile from Database into user dto
-     user = new RegistrationDTO();
+     user = new ParentChildDTO();
       
       //user.setPasswordSalt(userProfile.getUser().getPasswordSalt());
      /* user.setPassword(userProfile.getLoginModel().getPassword());
@@ -79,9 +81,14 @@ public class UserDetailsService implements org.springframework.security.core.use
       user.setPublicAccountId(userProfile.getCustomerAccount().getPublicAccountId());*/
       BeanUtils.copyProperties(userProfile, user);
       LoginDTO loginDTO = new LoginDTO();
-      loginDTO.setEmail(userProfile.getLoginModel().getEmail());
-      loginDTO.setPassword(userProfile.getLoginModel().getPassword());
-      user.setLogin(loginDTO);
+      loginDTO.setEmail(userProfile.getRegistration().getLoginModel().getEmail());
+      loginDTO.setPassword(userProfile.getRegistration().getLoginModel().getPassword());
+      RegistrationDTO registrationDTO=new RegistrationDTO();
+      registrationDTO.setId(userProfile.getRegistration().getId());
+      registrationDTO.setName(userProfile.getRegistration().getName());
+      registrationDTO.setSponsorId(userProfile.getRegistration().getSponsorId());
+      registrationDTO.setLogin(loginDTO);
+      user.setRegistration(registrationDTO);
       
     } else {
       log.error("Userprofile not found");
