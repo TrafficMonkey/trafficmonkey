@@ -1,4 +1,4 @@
-mainApp.controller('DashBoardCtrl', ['$rootScope','$scope','DashboardService', function($rootScope,$scope,DashboardService) {
+mainApp.controller('DashBoardCtrl', ['$rootScope','$scope','$location','DashboardService','commonService', function($rootScope,$scope,$location,DashboardService,commonService) {
     
    
   
@@ -11,6 +11,8 @@ var user=$scope.test;
     	.then(
     		function(d) {
 				console.log(d);
+				$location.path('binaryTree')
+				commonService.setbinaryTreeDetails(d);
 			},
 			
 			function(errResponse){}

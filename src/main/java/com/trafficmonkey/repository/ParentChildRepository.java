@@ -15,6 +15,11 @@ public interface ParentChildRepository extends JpaRepository<ParentChildModel, L
 	ParentChildModel findOneByEmail(@Param("email") String email);
 	  @Query("SELECT p FROM ParentChildModel p WHERE p.registration.id=:id")
 	  ParentChildModel findByRegistration(@Param("id") Long id);
+	  
+	  //@Query("SELECT a FROM ParentChildModel a INNER JOIN a.registration b ON a.parentId = b.id WHERE (b.id = :parentId) OR b.parent_id= :parentId")
+	  
+	  
+	  @Query(value = "SELECT  a.* FROM parent_child a inner join parent_child b  on   a.parent_id= b.registration_id   where (b.registration_id=?1)  or b.parent_id =?1", nativeQuery = true)
 	  List<ParentChildModel> findByParentId(@Param("parentId") Long parentId);
 	  
 	  

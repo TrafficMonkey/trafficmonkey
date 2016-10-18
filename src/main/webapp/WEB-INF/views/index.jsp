@@ -82,8 +82,8 @@
 	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
 	<script src="static/js/service/login_service.js"></script>
-
-
+	<script src="static/js/service/common_service.js"></script>
+	<script src="static/js/controller/binaryTree_controller.js"></script>
 
 </body>
 </html>

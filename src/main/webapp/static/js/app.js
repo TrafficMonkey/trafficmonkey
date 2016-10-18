@@ -38,6 +38,10 @@ mainApp.config(['$routeProvider', function($routeProvider) {
    .when('/dashboard', {
       templateUrl: 'static/pages/dashboard.html',controller:'DashBoardCtrl'
    })
+   
+   .when('/binaryTree', {
+      templateUrl: 'static/pages/binaryTree.html',controller:'BinaryTreeCtrl'
+   })
    .otherwise({redirectTo: '/' });
 }]);
 
