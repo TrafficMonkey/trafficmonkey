@@ -16,10 +16,11 @@ import com.trafficmonkey.repository.ParentChildRepository;
 @Service
 public class DashboardServiceImpl implements DashboardService {
 //	JSONArray jsonArray = new JSONArray();
-	List<GenerateBinaryTreeDTO>generateBinaryTreeDTOList=new ArrayList<>();
+	List<GenerateBinaryTreeDTO>generateBinaryTreeDTOList;
 	@Inject
 	ParentChildRepository parentChildRepository;
 	public List<GenerateBinaryTreeDTO> generateBinaryTree(Long parentId){
+		generateBinaryTreeDTOList=new ArrayList<>();
 		ParentChildModel parentChildModel= parentChildRepository.findByRegistration(parentId);
 		/*JSONObject jsonObject = new JSONObject();
 		jsonObject.put("id", parentChildModel.getRegistration().getId());
@@ -29,7 +30,7 @@ public class DashboardServiceImpl implements DashboardService {
 		GenerateBinaryTreeDTO generateBinaryTreeDTO=new GenerateBinaryTreeDTO();
 		generateBinaryTreeDTO.setId(parentChildModel.getRegistration().getId());
 		generateBinaryTreeDTO.setName(parentChildModel.getRegistration().getName());
-		generateBinaryTreeDTO.setParent(parentChildModel.getParentId());
+		generateBinaryTreeDTO.setParent(0L);
 		generateBinaryTreeDTOList.add(generateBinaryTreeDTO);
 		generateBinaryTreeDTOList=	getChildNodes(parentChildModel.getRegistration().getId());
 		

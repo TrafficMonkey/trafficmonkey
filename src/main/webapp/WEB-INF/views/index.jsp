@@ -4,6 +4,9 @@
 <title>Trafficmonkey</title>
 <link rel="stylesheet" href="static/css/bootstrap.css"></link>
 <link href="static/css/app.css" rel="stylesheet"></link>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+   <link href="./static/css/jquery.orgchart.css" media="all" rel="stylesheet" type="text/css" />
+   <link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css" rel="stylesheet"/>
 
 </head>
 
@@ -84,6 +87,13 @@
 	<script src="static/js/service/login_service.js"></script>
 	<script src="static/js/service/common_service.js"></script>
 	<script src="static/js/controller/binaryTree_controller.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script  src="static/JSlib/jquery.orgchart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+    
 
 </body>
 </html>

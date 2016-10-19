@@ -141,6 +141,18 @@ input ,select{
 }
 
 
-successText {
+.successText {
 	background-color: lightgreen;
+}
+
+#orgChart{
+    width: auto;
+    height: auto;
+}
+
+#orgChartContainer{
+    width: 1000px;
+    height: 500px;
+    overflow: auto;
+    background: #eeeeee;
 }

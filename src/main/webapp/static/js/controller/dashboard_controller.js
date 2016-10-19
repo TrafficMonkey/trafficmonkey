@@ -11,12 +11,25 @@ var user=$scope.test;
     	.then(
     		function(d) {
 				console.log(d);
-				$location.path('binaryTree')
 				commonService.setbinaryTreeDetails(d);
+				$location.path('binaryTree')
+				
 			},
 			
 			function(errResponse){}
 			);
     	
 	   };
+	   
+	   $scope.selectedTab = 0;
+	    
+	    $scope.changeTab = function() {
+	        if ($scope.selectedTab === 2) {
+	            $scope.selectedTab = 0;
+	        }
+	        else {
+	            $scope.selectedTab++;
+	        }
+	        
+	    }
 	}]);
