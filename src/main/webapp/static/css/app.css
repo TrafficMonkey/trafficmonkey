@@ -59,7 +59,12 @@ div.plan:hover
 
 .background{
 	padding:15px;
-	background: url("../images/background.gif");
+	/* background: url("../images/background.gif"); */
+	background: #382c42;/*where gradient does not works*/
+	background: -webkit-linear-gradient(90deg, #382c42, #af7f5a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(90deg, #382c42, #af7f5a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(90deg, #382c42, #af7f5a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(90deg,#382c42 , #af7f5a); /* Standard syntax (must be last)*/
 }
 input[type=text], input[type=password] {
     width: 100%;
@@ -121,26 +126,37 @@ span.psw {
 	color:red;
 }
  input.ng-valid {
-	border: solid 1px #90EE90;
+	border: solid 1px #468847;
 }
 input.ng-invalid {
-	border: solid 1px #FF0000;
+	border: solid 1px #B94a48;
 }
 
 input ,select{
-	background-color: #FAFFBD;
+	background-color: #6B4E31;
 }
+
+/* .jumbotron{
+	background: -webkit-linear-gradient(#d9cba5, #b4964b); For Safari 5.1 to 6.0
+    background: -o-linear-gradient(#d9cba5, #b4964b); For Opera 11.1 to 12.0
+    background: -moz-linear-gradient(#d9cba5, #b4964b); For Firefox 3.6 to 15
+	background: linear-gradient(#d9cba5, #b4964b);
+	box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+	
+} */
 
 .jumbotron{
 	background: -webkit-linear-gradient(#d9cba5, #b4964b); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(#d9cba5, #b4964b); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#d9cba5, #b4964b); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(#d9cba5, #b4964b);
+	background: linear-gradient(#7b6d79, #906945);
 	box-shadow: 0 2px 10px rgba(0,0,0,0.8);
 	
 }
-
-
+.round ng-dirty ng-valid-parse ng-touched ng-valid ng-valid-required
+{
+	background-color: #6B4E31;
+}
 .successText {
 	background-color: lightgreen;
 }
@@ -149,6 +165,9 @@ input ,select{
     width: auto;
     height: auto;
 }
+
+
+
 
 #orgChartContainer{
     width: 1000px;

@@ -7,6 +7,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
    <link href="./static/css/jquery.orgchart.css" media="all" rel="stylesheet" type="text/css" />
    <link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css" rel="stylesheet"/>
+   <link href="./static/css/easy-responsive-tabs.css" media="all" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -93,7 +94,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-aria.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
-    
+     <script  src="static/JSlib/easyResponsiveTabs.js"></script>
+      
 
 </body>
 </html>

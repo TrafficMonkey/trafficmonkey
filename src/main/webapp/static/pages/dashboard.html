@@ -4,37 +4,33 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-Dashboard {{test}}
-<input type="submit" value="Create Binary" ng-click="createBinaryTree()"/>
+<body data-ng-init="onload()">
+
+   <div id="parentVerticalTab">
+            <ul class="resp-tabs-list hor_1">
+                <li>Vertical 1</li>
+                <li>Vertical 2</li>
+                <li><img src="./static/images/Binary-tree-icon.png" alt="Icon" style="width:10%;height:10%;" /></image>My DownLine</li>
+            </ul>
+            <div class="resp-tabs-container hor_1">
+                <div>
+                    Lorem ipsum dolor sit amet, lerisque commodo. Nam porta cursus lectusconsectetur adipiscing elit. Vestibulum nibh urna, euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit. Sed sodales sce. Proin nunc erat, gravida a facilisis quis, ornare id lectus.
+                    <br>
+                    <br>
+                    <p>Tab 1 Container</p>
+                </div>
+                <div>
+                    Lorem consectetur adipiscing elit. Vestibulum nibh urna, euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis.
+                    <br>
+                    <br>
+                    <p>Tab 2 Container</p>
+                </div>
+                <div>
+                     <h1 style="margin-top:150px;"></h1>
+                      <div id="orgChart"></div>
+                </div>
+            </div>
+        </div>
+        
 </body>
 </html>
-
-
-
-
-<div class="tab-container">
-            <md-tabs md-selected="selectedTab"  md-stretch-tabs="always"  >
-                <md-tab label="One">
-                    <p class="tab-content">Tab One content</p>
-                </md-tab>
-                <md-tab label="Two">
-                    <p class="tab-content">Tab Two content</p>
-                </md-tab>
-                <md-tab label="Three">
-                    <p class="tab-content">Tab Three content</p>
-                </md-tab>
-            </md-tabs>      
-        </div>
-       
-        
-        <div class="tab-change-row">
-            <md-button class="tab-btn md-raised" ng-click="changeTab()">Change Tab</md-button>    
-        </div>
-
-
-
-
-
-
-
