@@ -5,32 +5,54 @@
 <title>Insert title here</title>
 </head>
 <body data-ng-init="onload()">
+	<div id="container">
+		<div id="parentVerticalTab" class="row">
 
-   <div id="parentVerticalTab">
-            <ul class="resp-tabs-list hor_1">
-                <li>Vertical 1</li>
-                <li>Vertical 2</li>
-                <li><img src="./static/images/Binary-tree-icon.png" alt="Icon" style="width:10%;height:10%;" /></image>My DownLine</li>
-            </ul>
-            <div class="resp-tabs-container hor_1">
-                <div>
-                    Lorem ipsum dolor sit amet, lerisque commodo. Nam porta cursus lectusconsectetur adipiscing elit. Vestibulum nibh urna, euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit. Sed sodales sce. Proin nunc erat, gravida a facilisis quis, ornare id lectus.
-                    <br>
-                    <br>
-                    <p>Tab 1 Container</p>
-                </div>
-                <div>
-                    Lorem consectetur adipiscing elit. Vestibulum nibh urna, euismod ut ornare non, volutpat vel tortor. Integer laoreet placerat suscipit. Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin nunc erat, gravida a facilisis quis, ornare id lectus. Proin consectetur nibh quis.
-                    <br>
-                    <br>
-                    <p>Tab 2 Container</p>
-                </div>
-                <div>
-                     <h1 style="margin-top:150px;"></h1>
-                      <div id="orgChart"></div>
-                </div>
-            </div>
-        </div>
-        
+			<div class="col-sm-4">
+
+				<ul id="nav" class="resp-tabs-list hor_1">
+					<li><i class="fa fa-user fa-fw"></i>My Profile</li>
+					<li>My Account</li>
+					<li>
+					My DownLine</li>
+				</ul>
+
+			</div>
+
+			<div class="resp-tabs-container hor_1 col-sm-8">
+				<div>
+					<pre>
+                Lorem ipsum dolor sit amet,
+                lerisque commodo.
+                Nam porta cursus lectusconsectetur adipiscing elit.
+                 Vestibulum nibh urna, euismod ut ornare non,
+                  volutpat vel tortor. Integer laoreet placerat suscipit. 
+                   Sed sodales sce. Proin nunc erat,
+                       gravida a facilisis quis, ornare id lectus.
+                       
+                      
+                       
+                </pre>
+
+ <div ng-include  src="/static/pages/profile.html"></div>
+					<p>Tab 1 Container</p>
+				</div>
+				<div>
+				<pre>
+					Lorem consectetur adipiscing elit. Vestibulum nibh urna, euismod ut
+					ornare non, volutpat vel tortor. Integer laoreet placerat suscipit.
+					Sed sodales scelerisque commodo. Nam porta cursus lectus. Proin
+					nunc erat, gravida a facilisis quis, ornare id lectus. Proin
+					consectetur nibh quis.
+</pre>
+					<p>Tab 2 Container</p>
+				</div>
+				<div>
+					<h1 style="margin-top: 150px;"></h1>
+					<div id="orgChart"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

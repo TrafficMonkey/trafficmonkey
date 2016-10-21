@@ -8,6 +8,10 @@
    <link href="./static/css/jquery.orgchart.css" media="all" rel="stylesheet" type="text/css" />
    <link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css" rel="stylesheet"/>
    <link href="./static/css/easy-responsive-tabs.css" media="all" rel="stylesheet" type="text/css" />
+   <link href="./static/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
 
 </head>
 

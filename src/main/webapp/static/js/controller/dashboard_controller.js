@@ -9,6 +9,10 @@ var user=$scope.test;
      
 	   angular.element(document).ready(function () {
 
+		   
+		   
+		   
+		   
 		   DashboardService.generateTree(user.USER.registration.id)
 	    	.then(
 	    		function(d) {
@@ -35,23 +39,12 @@ var user=$scope.test;
 		                    });
 		               
 					
-					
-					//$location.path('binaryTree')
-					//commonService.setbinaryTreeDetails(d);
 				},
 				
 				function(errResponse){}
 				);
 		   
 		});
-	   
-	   
-	   
-	   
-	   
-	   
-	   
-	   
 	   
 	   
 	   

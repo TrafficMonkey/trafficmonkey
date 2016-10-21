@@ -1,7 +1,7 @@
 body {
     margin: 0px;
     padding: 0px;
-    background: #f5f5f5;
+   color: #FFFFFF;
     font-family: 'Segoe UI';
 }
 
@@ -24,7 +24,7 @@ ul.resp-tabs-list, p {
 
 .resp-tabs-container {
     padding: 0px;
-    background-color: #fff;
+   
     clear: left;
 }
 
@@ -37,6 +37,7 @@ h2.resp-accordion {
 .resp-tab-content {
     display: none;
     padding: 15px;
+    color:white
 }
 
 .resp-tab-active {
@@ -93,15 +94,16 @@ h2.resp-tab-title:last-child {
     margin: 0 0 4px;
     cursor: pointer;
     float: none;
+    background-color: #58465A !important;
 }
 
 .resp-vtabs .resp-tabs-container {
     padding: 0px;
-    background-color: #fff;
-    border: 1px solid #c1c1c1;
+
+    /* border: 1px solid #c1c1c1; */
     float: left;
-    width: 68%;
-    min-height: 250px;
+    width: auto;
+    min-height: auto;
     border-radius: 4px;
     clear: none;
 }
@@ -121,6 +123,8 @@ border: 1px solid #5AB1D0 !important;
 border-left: 4px solid #5AB1D0 !important;
 margin-bottom: 4px !important;
 border-right: 1px #FFF solid !important;
+background-color:#211B23 !important;
+color:#FFFFF !important;
 }
 
 .resp-arrow {
@@ -142,7 +146,7 @@ h2.resp-tab-active span.resp-arrow {
 
 /*-----------Accordion styles-----------*/
 h2.resp-tab-active {
-    background: #DBDBDB;/* !important;*/
+   
 }
 
 .resp-easy-accordion h2.resp-accordion {
@@ -164,6 +168,7 @@ h2.resp-tab-active {
 
 .resp-tab-content-active {
     display: block;
+   
 }
 
 h2.resp-accordion:first-child {
@@ -179,9 +184,14 @@ h2.resp-accordion:first-child {
     h2.resp-accordion {
         display: block;
     }
-
+    
+   
+  
+   
+   
     .resp-vtabs .resp-tab-content {
         border: 1px solid #C1C1C1;
+        color: #ffffff
     }
 
     .resp-vtabs .resp-tabs-container {
@@ -190,6 +200,7 @@ h2.resp-accordion:first-child {
         width: 100%;
         min-height: 100px;
         clear: none;
+        color: #ffffff
     }
 
     .resp-accordion-closed {
