@@ -5,13 +5,20 @@
 <title>Insert title here</title>
 </head>
 <body data-ng-init="onload()">
-	<div id="container">
+
+
+
+
+	<!-- <div id="container">
+	
+              <ng-include src="'static/pages/profile.html'"></ng-include>                             
+                
 		<div id="parentVerticalTab" class="row">
 
-			<div class="col-sm-4">
+			<div class="col-sm-3">
 
 				<ul id="nav" class="resp-tabs-list hor_1">
-					<li><i class="fa fa-user fa-fw"></i>My Profile</li>
+					<li click="myprofile()"><i class="fa fa-user fa-fw"></i>My Profile</li>
 					<li>My Account</li>
 					<li>
 					My DownLine</li>
@@ -21,21 +28,13 @@
 
 			<div class="resp-tabs-container hor_1 col-sm-8">
 				<div>
-					<pre>
-                Lorem ipsum dolor sit amet,
-                lerisque commodo.
-                Nam porta cursus lectusconsectetur adipiscing elit.
-                 Vestibulum nibh urna, euismod ut ornare non,
-                  volutpat vel tortor. Integer laoreet placerat suscipit. 
-                   Sed sodales sce. Proin nunc erat,
-                       gravida a facilisis quis, ornare id lectus.
-                       
-                      
-                       
-                </pre>
+				 
+					hi
+                                           
+                
+               
 
- <div ng-include  src="/static/pages/profile.html"></div>
-					<p>Tab 1 Container</p>
+					
 				</div>
 				<div>
 				<pre>
@@ -53,6 +52,42 @@
 				</div>
 			</div>
 		</div>
+	</div> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- <div class="mainWrap">
+  
+  
+  
+
+</div> -->
+<div id="horizontalTab">
+
+	<div class="col-sm-3">
+
+		<div class="left-nav">
+			<div id="side-nav">
+				<ul class="nav " id="nav">
+					<li><a ui-sref=".profile">Profile</a></li>
+					<li><a ui-sref=".account">Account</a></li>
+					<li><a ui-sref=".downLine" >My DownLine</a></li>
+					<li><a ui-sref=".rewards" >My Rewards</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
+
+	<div class="col-sm-13">
+<div ui-view></div></div></div>
 </body>
 </html>

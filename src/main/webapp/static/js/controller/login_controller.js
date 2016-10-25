@@ -12,6 +12,8 @@ mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location
 	        		function(d) {
 	        			
 	        			$rootScope.test=d
+	        			console.log(d.USER.registration.id);
+	        			 window.sessionStorage.setItem('loggedInUserId',d.USER.registration.id);
 	        		$location.path('dashboard')
 	        		},
 		              function(errResponse){
