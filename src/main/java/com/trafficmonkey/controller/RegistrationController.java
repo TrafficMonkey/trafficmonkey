@@ -58,6 +58,7 @@ public class RegistrationController extends BaseRestController {
 	private Properties errorProperties;
 
 	@Autowired
+	@Qualifier("mailService")
 	private MailService mailService;
 
 	@SuppressWarnings(value = { "" })
