@@ -141,17 +141,18 @@ $urlRouterProvider.otherwise('/home');
     
     .state('dashboard.profile', {
             url: '/profile',
-            templateUrl: 'static/pages/profile.html'
+            templateUrl: 'static/pages/profile.html',
+            	 controller:'ProfileCtrl'
             
         })
     
         .state('dashboard.account', {
-            url: '/account',
+            url: '',
             templateUrl: 'static/pages/account.html'
             
         })
          .state('dashboard.downLine', {
-            url: '/account',
+            url: '/downline',
             templateUrl: 'static/pages/downLine.html',
             controller:'DownLineCtrl'
             

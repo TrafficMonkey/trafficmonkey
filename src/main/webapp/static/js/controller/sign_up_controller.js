@@ -20,15 +20,18 @@ mainApp.controller('SignUpCtrl', ['$rootScope','$scope','SignUpService','$locati
         		
         		function(d) {
         			$scope.errorMessage='';
+        			$scope.message=''
         			$rootScope.test=d
         			$scope.message='You are successfully register in Trafficmonkey'
         		  //$location.path('dashboard')
         			
         		},
 	              function(errResponse){
+        			$scope.errorMessage='';
+        			$scope.message='';
 		              // console.error('Error while creating User.');
 		               $scope.errorMessage=errResponse.data.Error.message;
-	              }	
+	              }
     );
 		console.log($scope.user);
     };

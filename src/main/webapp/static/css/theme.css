@@ -3,7 +3,7 @@
 body {
 background-color: #54364a;
 background-size: cover;
-background-image:url(../images/a.jpg);
+background-image:url(../images/h.jpg);
 }
 
 .header {
@@ -109,6 +109,7 @@ div.jqplot-table-legend-swatch {
 	margin: 0;
 	padding: 0;
 }
+
 
 #side-nav ul#nav li:last-child, #side-nav ul#nav li.open, #side-nav ul#nav li.open-default, #side-nav ul#nav li.open-fixed {
 	border-bottom: 0 none;

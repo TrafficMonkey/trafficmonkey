@@ -1,4 +1,4 @@
-<html>
+<html  class="js">
 
 <head>
 <title>Trafficmonkey</title>
@@ -7,7 +7,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
    <link href="./static/css/jquery.orgchart.css" media="all" rel="stylesheet" type="text/css" />
    
-   <link href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css" rel="stylesheet"/>
+  
    <link href="./static/css/easy-responsive-tabs.css" media="all" rel="stylesheet" type="text/css" />
    <link href="./static/css/font-awesome.min.css" media="all" rel="stylesheet" type="text/css" />
     <link href="./static/css/theme.css" media="all" rel="stylesheet" type="text/css" />
@@ -17,19 +17,18 @@
 
 </head>
 
-<body class="background">
-
+<body >
 
 	<div ng-app="mainApp" >
-
-		<div ng-app="mainApp" class="top-navbar header b-b navbar-fixed-top">
-			<a href="#home" class="navbar-brand"> TrafficMonkey.com </a>
+	<div class="container">
+		<div class="top-navbar header b-b">
+			<a href="#home" class="navbar-brand "> TrafficMonkey.com </a>
 			<button class=" navbar navbar-toggle" data-toggle="collapse"
 				data-target=".navheadercollapse">
 				<span class=" icon-bar"></span> <span class=" icon-bar"></span> <span
 					class=" icon-bar"></span>
 			</button>
-			<div class=" collapse navbar-collapse navheadercollapse">
+			<div >
 				<ul class=" nav navbar-nav">
 					<li><a ui-sref="home">Home</a></li>
 					<li><a ui-sref="aboutUs">About us</a></li>
@@ -45,8 +44,9 @@
 				</ul>
 			</div>
 		</div>
+		</div>
 
-    <div ui-view style="margin-top: 70px;"></div>
+    <div ui-view style="margin-top:50px"></div>
 
 
 		
@@ -54,7 +54,7 @@
 
 
 
-		<div class="top-navbar header b-b navbar-fixed-bottom">
+		<div class="bottom-nav footer">
 			<button class=" navbar navbar-toggle" data-toggle="collapse"
 				data-target=".navfootercollapse">
 				<span class=" icon-bar"></span> <span class=" icon-bar"></span> <span
@@ -71,6 +71,7 @@
 				</ul>
 			</div>
 		</div>
+		 	
 	</div>
 
 
@@ -87,6 +88,7 @@
 	<script src="static/js/controller/sign_up_controller.js"></script>
 	<script src="static/js/controller/login_controller.js"></script>
 	<script src="static/js/controller/dashboard_controller.js"></script>
+	<script src="static/js/controller/profile_controller.js"></script>
 	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
 	<script src="static/js/service/login_service.js"></script>

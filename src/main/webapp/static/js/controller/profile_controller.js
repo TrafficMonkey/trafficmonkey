@@ -1,4 +1,6 @@
-mainApp.controller('ProfileCtrl', ['$rootScope','$scope','$location',  function($rootScope,$scope,$location)  {
+mainApp.controller('ProfileCtrl', ['$rootScope','$scope','$location','commonService',  function($rootScope,$scope,$location,commonService)  {
 	 
-	alert("halooooo");
+	var userDetails= commonService.getdataDetails();
+	$scope.user=userDetails;
+	 console.log(userDetails);
 	}]);

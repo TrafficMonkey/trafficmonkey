@@ -1,6 +1,6 @@
 
 
-mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location',  function($rootScope,$scope,LoginService,$location)  {
+mainApp.controller('LoginCtrl', ['$rootScope','$scope','$state','LoginService','commonService','$location',  function($rootScope,$scope,$state,LoginService,commonService,$location)  {
 	  // $scope.message = "This is view 1";
 	   $scope.loginDetails={email:'', password :'' ,isRememberMe:''};
 	   $scope.errorMessage='';
@@ -14,7 +14,8 @@ mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location
 	        			$rootScope.test=d
 	        			console.log(d.USER.registration.id);
 	        			 window.sessionStorage.setItem('loggedInUserId',d.USER.registration.id);
-	        		$location.path('dashboard')
+	        			 commonService.setdataDetails(d.USER);
+	        		     $state.go('dashboard.profile')
 	        		},
 		              function(errResponse){
 			               console.error('Error while creating User.');
@@ -22,6 +23,6 @@ mainApp.controller('LoginCtrl', ['$rootScope','$scope','LoginService','$location
 			               $scope.errorMessage=errResponse.data.Error.message;
 		              }	
 	    );
-			console.log($scope.loginDetails);
+			
 	   };
 	}]);

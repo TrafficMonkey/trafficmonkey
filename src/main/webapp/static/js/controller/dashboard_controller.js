@@ -1,4 +1,4 @@
-mainApp.controller('DashBoardCtrl', ['$rootScope','$scope','$location','DashboardService','commonService', function($rootScope,$scope,$location,DashboardService,commonService) {
+mainApp.controller('DashBoardCtrl', ['$rootScope','$scope','$location','DashboardService', function($rootScope,$scope,$location,DashboardService) {
     
 	 
 	var newScope = $scope.$new();
@@ -6,7 +6,8 @@ mainApp.controller('DashBoardCtrl', ['$rootScope','$scope','$location','Dashboar
     var user=$scope.test;
     
        
-    
+ 
+  //console.log( $scope.userDetails);
     
     /* below code for tree genrationn */
     

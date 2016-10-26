@@ -1,9 +1,9 @@
 mainApp.service('commonService',function(){
-var _binaryTreeDetails=[];
-this.setbinaryTreeDetails=function(binaryTreeDetails){
-	_binaryTreeDetails=binaryTreeDetails;
+var _dataDetails=[];
+this.setdataDetails=function(dataDetails){
+	_dataDetails=dataDetails;
 }
-this.getbinaryTreeDetails=function(){
-	return _binaryTreeDetails;
+this.getdataDetails=function(){
+	return _dataDetails;
 }
 });

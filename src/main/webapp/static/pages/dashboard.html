@@ -71,13 +71,12 @@
   
 
 </div> -->
-<div id="horizontalTab">
+<div class="row wrapper">
 
-	<div class="col-sm-3">
-
-		<div class="left-nav">
-			<div id="side-nav">
-				<ul class="nav " id="nav">
+  <div class="left-nav">
+    <div id="side-nav">
+      
+				<ul  id="nav">
 					<li><a ui-sref=".profile">Profile</a></li>
 					<li><a ui-sref=".account">Account</a></li>
 					<li><a ui-sref=".downLine" >My DownLine</a></li>
@@ -85,9 +84,9 @@
 				</ul>
 			</div>
 		</div>
-	</div>
+	
 
-	<div class="col-sm-13">
-<div ui-view></div></div></div>
+	<div  ui-view class="col-sm-9">
+</div></div>
 </body>
 </html>
