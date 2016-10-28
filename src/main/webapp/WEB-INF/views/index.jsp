@@ -13,7 +13,7 @@
     <link href="./static/css/theme.css" media="all" rel="stylesheet" type="text/css" />
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
-
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.css">
 
 </head>
 
@@ -93,6 +93,7 @@
 	<script src="static/js/service/signup_services.js"></script>
 	<script src="static/js/service/login_service.js"></script>
 	<script src="static/js/service/common_service.js"></script>
+	<script src="static/js/service/fileUplod_service.js"></script>
 	<script src="static/js/controller/downLine_controller.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script  src="static/JSlib/jquery.orgchart.js"></script>
@@ -105,7 +106,7 @@
      
      
       <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
-      
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.js"></script>
 
 </body>
 </html>

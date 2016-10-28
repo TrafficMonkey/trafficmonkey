@@ -1067,10 +1067,40 @@ ul.messages_layout .dropdown-menu li {
  
  }
  
+ .imgArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:200px;
+  height:250px;
+}
  
  
- 
- 
+ #box {
+    width:150px;
+    height: 150px;
+    margin: 10px;
+    position: relative;
+    overflow: hidden;  
+    background-color: white;
+    border: solid 2px green  ;
+    
+}
+#fileInput{
+	width: 60%;
+    height: 115%;
+    background: rgba(150,225,150,0.5);
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 20%;
+    margin-top: -168px;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 400px;
+    opacity: 0;
+    disply:none !important;
+   
+    
+}
  
  
  
