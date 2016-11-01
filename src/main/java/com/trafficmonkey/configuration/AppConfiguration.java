@@ -3,6 +3,8 @@ package com.trafficmonkey.configuration;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.servlet.MultipartConfigElement;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -34,6 +38,22 @@ public class AppConfiguration extends WebMvcConfigurerAdapter{
 	    return properties;
 	  }
 
+	@Bean
+	public CommonsMultipartResolver multipartResolver(){
+	    CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+	    commonsMultipartResolver.setDefaultEncoding("utf-8");
+	    commonsMultipartResolver.setMaxUploadSize(50000000);
+	    return commonsMultipartResolver;
+	}
+	
+	//@/*Bean
+	/*public MultipartConfigElement multipartConfigElement(){
+	    MultipartConfigFactory multipartConfigFactory = new MultipartConfigFactory();
+	    multipartConfigFactory.setMaxFileSize("10MB");
+	    multipartConfigFactory.setMaxRequestSize("50MB");
+	    return multipartConfigFactory.createMultipartConfig();
+	}*/
+	
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();

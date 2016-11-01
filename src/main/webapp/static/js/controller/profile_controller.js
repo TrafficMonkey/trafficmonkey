@@ -21,7 +21,7 @@ mainApp.controller('ProfileCtrl', ['$rootScope','$scope','$location','commonServ
 	         console.log('my target value ');
 	         console.log(evt.target.result);
 	       
-	         FileUplodeService.uploadProfileImg(evt.target.result);
+	         FileUplodeService.uploadProfileImg(file);
 	        });
 	      };
 	     // reader.readAsDataURL(file);

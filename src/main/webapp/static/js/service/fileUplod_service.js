@@ -5,14 +5,15 @@ mainApp.factory('FileUplodeService', ['$http', '$q', function($http, $q){
 	return {
 		
 			
-		uploadProfileImg: function(fileDetails){
-		    	
-		    	
-					return $http.put('http://localhost:8080/trafficmonkey/upload/', fileDetails,
+		uploadProfileImg: function(file){
+			var fd = new FormData();
+			 fd.append('file', file);
+			 comsole.log('fd is =====>>>>>');
+		    	consol.log(fd);
+					return $http.put('http://localhost:8080/trafficmonkey/upload/',fd,{
 							
-							{       
-					    headers: {'Content-Type': false, dataType: 'text'},
-					    transformRequest: angular.identity
+							transformRequest: angular.identity,
+		                     headers: {'Content-Type':undefined,'Process-Data':false}
 					}
 					
 					)
