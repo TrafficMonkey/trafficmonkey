@@ -8,12 +8,13 @@ mainApp.factory('FileUplodeService', ['$http', '$q', function($http, $q){
 		uploadProfileImg: function(file){
 			var fd = new FormData();
 			 fd.append('file', file);
-			 comsole.log('fd is =====>>>>>');
-		    	consol.log(fd);
+			/* comsole.log('fd is =====>>>>>');
+		    	consol.log(fd);*/
 					return $http.put('http://localhost:8080/trafficmonkey/upload/',fd,{
 							
 							transformRequest: angular.identity,
-		                     headers: {'Content-Type':undefined,'Process-Data':false}
+		                     headers: {'Content-Type':undefined,'Process-Data':false},
+					
 					}
 					
 					)

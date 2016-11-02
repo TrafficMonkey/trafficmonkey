@@ -27,7 +27,7 @@ import com.traficmonkey.enums.Codes;
 @RestController
 public class FileUploadController extends BaseRestController {
 	@RequestMapping(value = "/upload/", method = RequestMethod.PUT)
-	public ResponseEntity uploadProfileImg(@RequestParam MultipartHttpServletRequest multipartRequest) throws IOException{
+	public ResponseEntity uploadProfileImg(@RequestParam(value = "file")MultipartHttpServletRequest multipartRequest) throws IOException{
 		
 		
 		System.out.println(multipartRequest);
