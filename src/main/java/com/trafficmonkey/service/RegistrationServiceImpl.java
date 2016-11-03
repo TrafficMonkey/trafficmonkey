@@ -1,5 +1,6 @@
 package com.trafficmonkey.service;
 
+import java.sql.Blob;
 import java.util.Date;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficmonkey.DTO.ParentChildDTO;
@@ -76,8 +78,16 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	    return userAccountProfile;
 	  }
+ 
  public RegistrationModel getSponsorName(String sponsorId){
 	 RegistrationModel registrationModel=registrationRepository.findBySponsorId(sponsorId);
 	 return  registrationModel;
+ }
+ 
+
+public void saveProfileImage(Blob profileImg , Long Id){
+ registrationRepository.saveProfileImg(Id, profileImg);
+	
+	 
  }
 }

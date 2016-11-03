@@ -1,10 +1,15 @@
 package com.trafficmonkey.controller;
 
+import java.io.IOException;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.text.MessageFormat;
 import java.util.Properties;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.trafficmonkey.DTO.LoginDTO;
 import com.trafficmonkey.DTO.ParentChildDTO;
@@ -94,7 +100,7 @@ public class RegistrationController extends BaseRestController {
 			Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
 			ParentChildDTO registration = (ParentChildDTO) authentication.getPrincipal();
 			boolean rememberMe = (loginDTO.isRememberMe() == null) ? false : loginDTO.isRememberMe();
-
+            
 			// Creating token
 			String jwt = tokenProvider.createToken(authentication, rememberMe, registration.getRegistration().getLogin());
 
@@ -127,4 +133,14 @@ public class RegistrationController extends BaseRestController {
 		}
 		
 	}
+	
+	
+	@RequestMapping(value = "/upload", method = RequestMethod.POST)
+	public ResponseEntity<Void> uploadProfileImg(@RequestParam(value = "userId") Long id ,@RequestParam(value = "file")MultipartFile multipartRequest) throws IOException, SerialException, SQLException{
+		Blob profileImg = new SerialBlob(multipartRequest.getBytes());
+		registrationService.saveProfileImage(profileImg, id);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
+	}
+			
+	
 }

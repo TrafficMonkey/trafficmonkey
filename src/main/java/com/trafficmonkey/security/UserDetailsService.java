@@ -2,6 +2,7 @@
 
 package com.trafficmonkey.security;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class UserDetailsService implements org.springframework.security.core.use
       
       List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 
-      // TODO: currently hardcoded ROLE_ADMIN for all user
+      
       grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
 
       //Map user account profile from Database into user dto
@@ -87,6 +88,21 @@ public class UserDetailsService implements org.springframework.security.core.use
       registrationDTO.setId(userProfile.getRegistration().getId());
       registrationDTO.setName(userProfile.getRegistration().getName());
       registrationDTO.setSponsorId(userProfile.getRegistration().getSponsorId());
+      if(userProfile.getRegistration().getProfileImage()!=null)
+      {
+     
+		try {
+			registrationDTO.setProfileImage(userProfile.getRegistration().getProfileImage().getBytes(1, (int) userProfile.getRegistration().getProfileImage().length()));
+		} catch (SQLException e) {
+			
+		}
+	
+      }
+      
+      else
+      {
+    	  registrationDTO.setProfileImage("".getBytes());  
+      }
       registrationDTO.setLogin(loginDTO);
       user.setRegistration(registrationDTO);
       

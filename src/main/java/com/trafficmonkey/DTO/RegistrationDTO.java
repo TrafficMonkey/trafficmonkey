@@ -1,6 +1,7 @@
 package com.trafficmonkey.DTO;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class RegistrationDTO  {
 	private String planType;
 	private LoginDTO login;
 	private String termsAndCondition;
+	private byte[] profileImage;
 	//private Long parentId;
 	//private ParentChildDTO  parentChild;
 	
@@ -114,6 +116,13 @@ public class RegistrationDTO  {
 	public void setLogin(LoginDTO login) {
 		this.login = login;
 	}
+	public byte[] getProfileImage() {
+		return profileImage;
+	}
+	public void setProfileImage(byte[] profileImage) {
+		this.profileImage = profileImage;
+	}
+	
 	
 	
 }

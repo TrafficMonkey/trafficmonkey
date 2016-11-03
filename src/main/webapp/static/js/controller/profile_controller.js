@@ -1,13 +1,13 @@
 mainApp.controller('ProfileCtrl', ['$rootScope','$scope','$location','commonService','FileUplodeService',  function($rootScope,$scope,$location,commonService,FileUplodeService)  {
 	 
-	var userDetails= commonService.getdataDetails();
+	var userDetails= JSON.parse(window.sessionStorage.getItem('loggedInUserId')).USER;
 	$scope.user=userDetails;
 	 
-	
+	console.log(userDetails.registration.profileImage);
 	 
 	 
 	 
-	 $scope.myImage='';
+	 $scope.myImage='data:image/JPEG;base64,'+userDetails.registration.profileImage;
 	   
 
 	    var handleFileSelect=function(evt) {

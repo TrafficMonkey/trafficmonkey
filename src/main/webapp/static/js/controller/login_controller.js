@@ -12,8 +12,8 @@ mainApp.controller('LoginCtrl', ['$rootScope','$scope','$state','LoginService','
 	        		function(d) {
 	        			
 	        			$rootScope.test=d
-	        			console.log(d.USER.registration.id);
-	        			 window.sessionStorage.setItem('loggedInUserId',d.USER.registration.id);
+	        			console.log(d);
+	        			 window.sessionStorage.setItem('loggedInUserId',JSON.stringify(d));
 	        			 commonService.setdataDetails(d.USER);
 	        		     $state.go('dashboard.profile')
 	        		},

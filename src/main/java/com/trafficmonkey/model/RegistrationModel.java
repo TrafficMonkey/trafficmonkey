@@ -1,5 +1,7 @@
 package com.trafficmonkey.model;
 
+import java.sql.Blob;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,10 +41,11 @@ public class RegistrationModel  {
 	@Column(name = "termsAndCondition")
 	private String termsAndCondition;
 	@OneToOne(cascade=CascadeType.ALL)
-	  @JoinColumn(name = "login_id" ) 
+    @JoinColumn(name = "login_id" ) 
 	
 	private LoginModel loginModel;
-	
+	@Column(name="profileImage")
+	private Blob profileImage;
 	
 	public Long getId() {
 		return id;
@@ -138,6 +141,14 @@ public class RegistrationModel  {
 
 	public void setPanCard(String panCard) {
 		this.panCard = panCard;
+	}
+
+	public Blob getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(Blob profileImage) {
+		this.profileImage = profileImage;
 	}
 
 	
