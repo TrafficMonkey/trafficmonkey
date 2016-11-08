@@ -3,7 +3,8 @@ mainApp.controller('DownLineCtrl', ['$rootScope','$scope','$location','Dashboard
 	  angular.element(document).ready(function () {
 
 		
-	   DashboardService.generateTree( window.sessionStorage.getItem('loggedInUserId'))
+	   DashboardService.generateTree(JSON.parse(window.sessionStorage
+				.getItem('loggedInUserId')).USER.registration.id)
  	.then(
  		function(d) {
 				console.log(d);
@@ -18,13 +19,7 @@ mainApp.controller('DownLineCtrl', ['$rootScope','$scope','$location','Dashboard
 	                           
 	                            org_chart.newNode(node.data.id); 
 	                        },
-	                        /*onDeleteNode: function(node){
-	                           
-	                            org_chart.deleteNode(node.data.id); 
-	                        },
-	                        onClickNode: function(node){
-	                          
-	                        }*/
+	                        
 
 	                    });
 	               

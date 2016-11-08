@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.css">
-
+<link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
 </head>
 
 <body >
@@ -89,6 +89,8 @@
 	<script src="static/js/controller/login_controller.js"></script>
 	<script src="static/js/controller/dashboard_controller.js"></script>
 	<script src="static/js/controller/profile_controller.js"></script>
+	<script src="static/js/controller/todayTask_controller.js"></script>
+	
 	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
 	<script src="static/js/service/login_service.js"></script>
@@ -104,7 +106,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
      <script  src="static/JSlib/easyResponsiveTabs.js"></script>
      
-     
+    <script src="http://ui-grid.info/release/ui-grid.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.0/angular-ui-router.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-img-crop/0.3.2/ng-img-crop.js"></script>
 

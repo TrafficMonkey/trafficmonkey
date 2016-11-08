@@ -52,7 +52,7 @@ mainApp.run(function($rootScope) {
 
 
 
-var mainApp=angular.module('mainApp', ['ui.router','ui.bootstrap','ngImgCrop']);
+var mainApp=angular.module('mainApp', ['ui.router','ui.bootstrap','ngImgCrop','ui.grid']);
 
 mainApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
     
@@ -147,7 +147,7 @@ $urlRouterProvider.otherwise('/home');
         })
     
         .state('dashboard.account', {
-            url: '',
+            url: '/account',
             templateUrl: 'static/pages/account.html'
             
         })
@@ -160,8 +160,15 @@ $urlRouterProvider.otherwise('/home');
             
         })
          .state('dashboard.rewards', {
-            url: '/account',
+            url: '/rewards',
             templateUrl: 'static/pages/rewards.html',
+            
+        })
+        
+        .state('dashboard.todayTask', {
+            url: '/todayTask',
+            templateUrl: 'static/pages/todayTask.html',
+            controller:'TodayTaskCtrl'
             
         })
     ;

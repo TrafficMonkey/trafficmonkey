@@ -583,10 +583,15 @@ ul.messages_layout .dropdown-menu li {
  
  
  
+ .myGrid {
+width: 945px;
+height: 200px;
+}
  
- 
- 
- 
+ .ui-grid-header {
+    
+    height: 22% !important;
+}
  .errorText
 {
 	color: #B94a48;
