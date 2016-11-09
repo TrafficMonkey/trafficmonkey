@@ -8,7 +8,7 @@
 
 
 
-mainApp.controller('TodayTaskCtrl', ['$scope', function($scope) {
+mainApp.controller('TodayTaskCtrl', ['$scope','todayTaskService', function($scope,todayTaskService) {
     
 	$scope.name='shweta';   
 	console.log('lode');
@@ -20,4 +20,8 @@ mainApp.controller('TodayTaskCtrl', ['$scope', function($scope) {
 { name: "Sateesh Chandra", age: 27, location: 'Vizag' }
 ];
 
+	
+	todayTaskService.getTodayTask(JSON.parse(window.sessionStorage
+				.getItem('loggedInUserId')).USER.registration.id);
+	
 }]);

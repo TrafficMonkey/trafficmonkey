@@ -42,7 +42,6 @@ public class RegistrationModel  {
 	private String termsAndCondition;
 	@OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "login_id" ) 
-	
 	private LoginModel loginModel;
 	@Column(name="profileImage")
 	private Blob profileImage;

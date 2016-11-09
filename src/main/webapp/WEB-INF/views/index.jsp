@@ -96,6 +96,7 @@
 	<script src="static/js/service/login_service.js"></script>
 	<script src="static/js/service/common_service.js"></script>
 	<script src="static/js/service/fileUplod_service.js"></script>
+	<script src="static/js/service/todayTask_service.js"></script>
 	<script src="static/js/controller/downLine_controller.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script  src="static/JSlib/jquery.orgchart.js"></script>
