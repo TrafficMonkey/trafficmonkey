@@ -24,9 +24,12 @@ public class WorkAssignmentModel {
      @Column(name="user_id")
      private Long userId;
      @Column(name="date")
-     private Date date;
-     @OneToMany(cascade=CascadeType.ALL,mappedBy="workAssignment")
- 	private	List<LinkModel> LinkModel;
+     private String date;
+     
+     @Column(name="link_id")
+     private Long linkId;
+     /*@OneToMany(cascade=CascadeType.ALL,mappedBy="workAssignment")
+ 	private	List<LinkModel> LinkModel;*/
 	public Long getId() {
 		return id;
 	}
@@ -39,17 +42,23 @@ public class WorkAssignmentModel {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-	public List<LinkModel> getLinkModel() {
+	/*public List<LinkModel> getLinkModel() {
 		return LinkModel;
 	}
 	public void setLinkModel(List<LinkModel> linkModel) {
 		LinkModel = linkModel;
-	}
-	public Date getDate() {
+	}*/
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
+	}
+	public Long getLinkId() {
+		return linkId;
+	}
+	public void setLinkId(Long linkId) {
+		this.linkId = linkId;
 	}
 	
 }

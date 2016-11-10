@@ -22,9 +22,9 @@ public class LinkModel {
 	private String pageTitle;
 	@Column(name="page_link")
 	private String pageLink;
-	    @ManyToOne(cascade=CascadeType.ALL)
+	    /*@ManyToOne(cascade=CascadeType.ALL)
 	 	@JoinColumn(name="link_id")
-	 	private WorkAssignmentModel workAssignment;
+	 	private WorkAssignmentModel workAssignment;*/
 		public Long getId() {
 			return Id;
 		}
@@ -43,10 +43,10 @@ public class LinkModel {
 		public void setPageLink(String pageLink) {
 			this.pageLink = pageLink;
 		}
-		public WorkAssignmentModel getWorkAssignment() {
+		/*public WorkAssignmentModel getWorkAssignment() {
 			return workAssignment;
 		}
 		public void setWorkAssignment(WorkAssignmentModel workAssignment) {
 			this.workAssignment = workAssignment;
-		}
+		}*/
 }
