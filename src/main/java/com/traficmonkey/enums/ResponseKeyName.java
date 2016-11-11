@@ -16,6 +16,7 @@ package com.traficmonkey.enums;
 public enum ResponseKeyName {
  USER,
  SPONSOR,
- BINARYTREE
+ BINARYTREE,
+ TODAY_TASK
 	
   }

@@ -52,7 +52,7 @@ mainApp.run(function($rootScope) {
 
 
 
-var mainApp=angular.module('mainApp', ['ui.router','ui.bootstrap','ngImgCrop','ui.grid']);
+var mainApp=angular.module('mainApp', ['ui.router','ui.bootstrap','ngImgCrop','ui.grid','ui.grid.edit', 'ui.grid.cellNav']);
 
 mainApp.config(['$stateProvider','$urlRouterProvider',function($stateProvider, $urlRouterProvider) {
     

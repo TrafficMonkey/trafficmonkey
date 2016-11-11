@@ -1,20 +1,23 @@
 package com.trafficmonkey.DTO;
 
 public class LinkDto {
-private Long LinkId;
-private String pageName;
+private Long Id;
+private String pageTitle;
 private String pageLink;
-public Long getLinkId() {
-	return LinkId;
+
+
+
+public Long getId() {
+	return Id;
 }
-public void setLinkId(Long linkId) {
-	LinkId = linkId;
+public void setId(Long id) {
+	Id = id;
 }
-public String getPageName() {
-	return pageName;
+public String getPageTitle() {
+	return pageTitle;
 }
-public void setPageName(String pageName) {
-	this.pageName = pageName;
+public void setPageTitle(String pageTitle) {
+	this.pageTitle = pageTitle;
 }
 public String getPageLink() {
 	return pageLink;
