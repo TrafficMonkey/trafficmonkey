@@ -588,6 +588,24 @@ width: 945px;
 height: 200px;
 }
  
+ 
+ .gridLink{
+ color:blue;
+ background:none!important;
+ border:none;  
+ padding:0!important;
+ font: inherit;
+  cursor: pointer;
+  }
+  .fontColorBlue{
+  color: blue;
+  
+  }
+  .fontColorGray{
+  color: Gray;
+  
+  }
+  
  .ui-grid-header {
     
     height: 22% !important;
