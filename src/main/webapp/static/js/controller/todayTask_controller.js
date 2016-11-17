@@ -16,7 +16,10 @@ mainApp.controller('TodayTaskCtrl', ['$scope','todayTaskService', function($scop
 		};
 	
 	$scope.users =[];
-	$scope.gridOptions={};
+	$scope.gridOptions={
+			enableColumnResizing: true,
+			//rowClass="style='color:red'"
+	};
 	$scope.gridOptions.onRegisterApi=function(gridApi) { //register grid data first within the gridOptions
 		   $scope.gridApi = gridApi;
 		 };

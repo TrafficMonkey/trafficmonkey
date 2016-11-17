@@ -80,6 +80,9 @@ public class RegistrationController extends BaseRestController {
 		//Long parentId=parentChildDto.getRegistration().getLogin().getEmail();
 		mailService.sendEmail(parentChildDto.getRegistration());
 		registrationService.saveUser(parentChildDto);
+		if(parentChildDto.getSponsorId()!=null){
+			Long Id=registrationService.findReferralUserId(parentChildDto.getRegistration().getSponsorId());
+		}
 		HttpHeaders headers = new HttpHeaders();
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}

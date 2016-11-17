@@ -25,6 +25,7 @@ import com.trafficmonkey.repository.LinkRepository;
 import com.trafficmonkey.repository.RegistrationRepository;
 import com.trafficmonkey.repository.WorkAssignmentRepository;
 import com.trafficmonkey.utils.AppUtils;
+import com.traficmonkey.enums.AppConstant;
 
 @Service
 @Transactional
@@ -35,63 +36,77 @@ public class WorkAssignmentServiceImpl implements WorkAssignmentService {
 	WorkAssignmentRepository workAssignmentRepository;
 	@Autowired
 	LinkRepository linkRepository;
+
 	@SuppressWarnings("unchecked")
-	public List<LinkDto> getTodayTaskService(Long userId){
-		List<LinkModel>linkModelList = new ArrayList<>();
+	public List<LinkDto> getTodayTaskService(Long userId) {
+		int limit = 0;
+		List<LinkModel> linkModelList = new ArrayList<>();
 		List<LinkDto> linkDtoList = new ArrayList<>();
-		RegistrationModel registrationModel=registrationRepository.findOne(userId);
-		String date=AppUtils.createDate();
-		List<WorkAssignmentModel> workAssigmentModel=workAssignmentRepository.findByUserIdAndDate(userId,date);
-		
-		
-		/*   Select Data from Link table               */
-		if("STP-10".equals(registrationModel.getPlanType())){
-			
-			linkModelList= 	(List<LinkModel>) linkRepository.getByLimit(10);
-			
-		/*workAssignmentRepository.save(Iterable<LinkModel>linkModelList);*/
+		RegistrationModel registrationModel = registrationRepository.findOne(userId);
+		String date = AppUtils.createDate();
+		List<WorkAssignmentModel> workAssigmentModel = workAssignmentRepository.findByUserIdAndDate(userId, date);
+
+		/* Select Data from Link table */
+		if (AppConstant.STP_TEN_STRING.getStringValue().equals(registrationModel.getPlanType())) {
+
+			limit = AppConstant.STP_TEN.getValue();
+
 		}
-		
-		/* Insert data into work assigment table*/
-		
-		for(int i=0;i<linkModelList.size();i++){
-			LinkDto linkDto=new LinkDto();
-			if(workAssigmentModel.size()==0){
-			WorkAssignmentModel workAssignmentModelval =new WorkAssignmentModel();
-			workAssignmentModelval.setUserId(userId);
-			workAssignmentModelval.setLinkId(linkModelList.get(i).getId());
-			workAssignmentModelval.setDate(date);
-			workAssignmentModelval.setStatus(false);
-			workAssignmentRepository.save(workAssignmentModelval);
-			
-			
-			
+
+		if (AppConstant.STP_TWENTY_STRING.getStringValue().equals(registrationModel.getPlanType())) {
+
+			limit = AppConstant.STP_TWENTY.getValue();
+
 		}
-			
+
+		if (AppConstant.STP_FIFTY_STRING.getStringValue().equals(registrationModel.getPlanType())) {
+
+			limit = AppConstant.STP_FIFTY.getValue();
+
+		}
+
+		if (AppConstant.STP_HUNDREAD_STRING.getStringValue().equals(registrationModel.getPlanType())) {
+
+			limit = AppConstant.STP_HUNDREAD.getValue();
+
+		}
+		linkModelList = (List<LinkModel>) linkRepository.getByLimit(limit);
+
+		/* Insert data into work assigment table */
+
+		for (int i = 0; i < linkModelList.size(); i++) {
+			LinkDto linkDto = new LinkDto();
+			if (workAssigmentModel.size() == 0) {
+				WorkAssignmentModel workAssignmentModelval = new WorkAssignmentModel();
+				workAssignmentModelval.setUserId(userId);
+				workAssignmentModelval.setLinkId(linkModelList.get(i).getId());
+				workAssignmentModelval.setDate(date);
+				workAssignmentModelval.setStatus(false);
+				workAssignmentRepository.save(workAssignmentModelval);
+
+			}
+
 			BeanUtils.copyProperties(linkModelList.get(i), linkDto);
-			WorkAssignmentModel workAssignmentModel=workAssignmentRepository.findBylinkIdAndUserIdAndDate(linkModelList.get(i).getId(),userId,date);;
+			WorkAssignmentModel workAssignmentModel = workAssignmentRepository
+					.findBylinkIdAndUserIdAndDate(linkModelList.get(i).getId(), userId, date);
+			;
 			linkDto.setStatus(workAssignmentModel.getStatus());
 			linkDtoList.add(linkDto);
-			
+
 		}
-		
-		
+
 		return linkDtoList;
-		
-		
+
 	}
-	
-	public int updateStatus(WorkAssignmentDTO workAssigment)
-	{
-		WorkAssignmentDTO workAssigmentDto=new WorkAssignmentDTO();
-		//WorkAssignmentModel workAssigmentModel= new WorkAssignmentModel();
-		//BeanUtils.copyProperties(workAssigmentDto, target);
-		String date=AppUtils.createDate();
-		
-		int value=workAssignmentRepository.updateStatus(workAssigment.getStatus(), date, workAssigment.getUserId(),workAssigment.getLinkId());
-		//BeanUtils.copyProperties(workAssigmentModel, workAssigmentDto);
+
+	public int updateStatus(WorkAssignmentDTO workAssigment) {
+		WorkAssignmentDTO workAssigmentDto = new WorkAssignmentDTO();
+		String date = AppUtils.createDate();
+		int value = workAssignmentRepository.updateStatus(workAssigment.getStatus(), date, workAssigment.getUserId(),
+				workAssigment.getLinkId());
+
 		return value;
-		
+
 	}
-	
+
 }

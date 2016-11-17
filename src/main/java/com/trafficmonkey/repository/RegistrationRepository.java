@@ -15,7 +15,7 @@ public interface RegistrationRepository extends  JpaRepository<RegistrationModel
 
 	   @Query("SELECT r FROM RegistrationModel r WHERE r.loginModel.email=:email")
 	    RegistrationModel findOneByEmail(@Param("email") String email);
-	   RegistrationModel findBySponsorId(@Param("sponsorId") String sponsorId);
+	     RegistrationModel findBySponsorId(@Param("sponsorId") String sponsorId);
 	   
 	   @Modifying 
 	   @Query("UPDATE RegistrationModel r SET r.profileImage = :profileImage WHERE r.id = :Id")

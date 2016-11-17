@@ -171,6 +171,20 @@ $urlRouterProvider.otherwise('/home');
             controller:'TodayTaskCtrl'
             
         })
+        
+        .state('dashboard.directReferralIncome', {
+            url: '/directReferralIncome',
+            templateUrl: 'static/pages/directReferral.html',
+            controller:'TodayTaskCtrl'
+            
+        })
+        
+        .state('dashboard.binaryIncome', {
+            url: '/binaryIncome',
+            templateUrl: 'static/pages/binaryIncome.html',
+            controller:'TodayTaskCtrl'
+            
+        })
     ;
     
     

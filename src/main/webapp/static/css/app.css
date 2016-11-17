@@ -585,7 +585,9 @@ ul.messages_layout .dropdown-menu li {
  
  .myGrid {
 width: 945px;
-height: 200px;
+height: 900px;
+background-color: transparent;
+
 }
  
  
@@ -598,7 +600,7 @@ height: 200px;
   cursor: pointer;
   }
   .fontColorBlue{
-  color: blue;
+  color: #FFFFFF;
   
   }
   .fontColorGray{
@@ -607,8 +609,18 @@ height: 200px;
   }
   
  .ui-grid-header {
-    
-    height: 22% !important;
+    height: 43px !important;
+    color :#ffffff!important; 
+  
+}
+.ui-grid-top-panel{
+	background: #83543B !important;
+}
+.ui-grid-cell{
+	height: 43px !important;
+	background-color: transparent !important;
+	color:#ffffff!important;
+	/* border: 1px solid  */
 }
  .errorText
 {
@@ -680,6 +692,7 @@ input.ng-invalid {
 	-moz-border-radius-topright: 0;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
+	height: 1000px
 }
 
 .widget-nopad .widget-content {

@@ -13,13 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.trafficmonkey.DTO.IncomeDTO;
 import com.trafficmonkey.DTO.ParentChildDTO;
+import com.trafficmonkey.model.IncomeModel;
 import com.trafficmonkey.model.LoginModel;
 import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.repository.ParentChildRepository;
 import com.trafficmonkey.repository.RegistrationRepository;
+import com.trafficmonkey.utils.AppUtils;
 import com.trafficmonkey.utils.ParentIdCalculate;
+import com.traficmonkey.enums.AppConstant;
 
 
 
@@ -90,4 +94,23 @@ public void saveProfileImage(Blob profileImg , Long Id){
 	
 	 
  }
+
+
+
+public Long findReferralUserId(String referralId)
+{
+	 //RegistrationModel registrationModel=	registrationRepository.findBySponsorId(referralId);
+	 return registrationRepository.findBySponsorId(referralId).getId();
+}
+public IncomeModel saveIncome(Long referralId, ParentChildDTO parentChildDto)
+{
+	IncomeDTO incomeDto=new IncomeDTO();
+	IncomeModel incomeModel=new IncomeModel();
+	incomeDto.setUserId(parentChildDto.getRegistration().getId());
+	incomeDto.setReferralId(referralId);
+	incomeDto.setDate(AppUtils.createDate());
+	incomeDto.setIncomeType(AppConstant.INCOME_TYPE_DI.getStringValue());
+	BeanUtils.copyProperties(incomeDto, incomeModel);
+	return incomeModel;
+}
 }
