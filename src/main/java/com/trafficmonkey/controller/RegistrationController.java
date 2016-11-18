@@ -35,6 +35,7 @@ import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.exception.BadRequestException;
 import com.trafficmonkey.exception.TrafficMonkeyException;
 import com.trafficmonkey.exception.UnauthorizedException;
+import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.security.jwt.JWTConfigurer;
 import com.trafficmonkey.security.jwt.TokenProvider;
@@ -79,9 +80,10 @@ public class RegistrationController extends BaseRestController {
 		}
 		//Long parentId=parentChildDto.getRegistration().getLogin().getEmail();
 		mailService.sendEmail(parentChildDto.getRegistration());
-		registrationService.saveUser(parentChildDto);
+		ParentChildModel parentChildModel= registrationService.saveUser(parentChildDto);
 		if(parentChildDto.getSponsorId()!=null){
-			Long Id=registrationService.findReferralUserId(parentChildDto.getRegistration().getSponsorId());
+			 Long Id=registrationService.findReferralUserId(parentChildDto.getSponsorId());
+			 registrationService.saveDirectReferral(Id, parentChildModel);
 		}
 		HttpHeaders headers = new HttpHeaders();
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
@@ -125,7 +127,7 @@ public class RegistrationController extends BaseRestController {
 	@RequestMapping(value = "/sponsorId", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> getSponsorName(
 		      @RequestParam(value = "sponsorId", required = true) String sponsorId) throws BadRequestException {
-		RegistrationModel registration=registrationService.getSponsorName(sponsorId);
+		RegistrationDTO registration=registrationService.getSponsorName(sponsorId);
 		if(registration!=null){
 			 return ResponseEntity.ok(createSuccessResponse(ResponseKeyName.SPONSOR, registration));
 		}

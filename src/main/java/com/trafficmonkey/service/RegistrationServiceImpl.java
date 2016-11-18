@@ -15,10 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.trafficmonkey.DTO.IncomeDTO;
 import com.trafficmonkey.DTO.ParentChildDTO;
+import com.trafficmonkey.DTO.RegistrationDTO;
 import com.trafficmonkey.model.IncomeModel;
 import com.trafficmonkey.model.LoginModel;
 import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
+import com.trafficmonkey.repository.IncomeRepository;
 import com.trafficmonkey.repository.ParentChildRepository;
 import com.trafficmonkey.repository.RegistrationRepository;
 import com.trafficmonkey.utils.AppUtils;
@@ -38,6 +40,8 @@ public class RegistrationServiceImpl implements RegistrationService {
   private PasswordEncoder passwordEncoder;
   @Inject
   ParentIdCalculate parentIdCalculate;
+  @Inject
+  private IncomeRepository incomeRepository;
  
  public ParentChildModel saveUser(ParentChildDTO parentChildDto) {
 		
@@ -83,9 +87,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 	    return userAccountProfile;
 	  }
  
- public RegistrationModel getSponsorName(String sponsorId){
+ public RegistrationDTO getSponsorName(String sponsorId){
 	 RegistrationModel registrationModel=registrationRepository.findBySponsorId(sponsorId);
-	 return  registrationModel;
+	 RegistrationDTO registrationDTO =new RegistrationDTO();
+	 BeanUtils.copyProperties(registrationModel, registrationDTO);
+	 
+	 
+	 return  registrationDTO;
  }
  
 
@@ -99,18 +107,22 @@ public void saveProfileImage(Blob profileImg , Long Id){
 
 public Long findReferralUserId(String referralId)
 {
-	 //RegistrationModel registrationModel=	registrationRepository.findBySponsorId(referralId);
-	 return registrationRepository.findBySponsorId(referralId).getId();
+	 RegistrationModel registrationModel=	registrationRepository.findBySponsorId(referralId);
+	 return registrationModel.getId();
 }
-public IncomeModel saveIncome(Long referralId, ParentChildDTO parentChildDto)
+public IncomeModel saveDirectReferral(Long referralId, ParentChildModel parentChildMode)
 {
 	IncomeDTO incomeDto=new IncomeDTO();
 	IncomeModel incomeModel=new IncomeModel();
-	incomeDto.setUserId(parentChildDto.getRegistration().getId());
+	incomeDto.setUserId(parentChildMode.getRegistration().getId());
 	incomeDto.setReferralId(referralId);
 	incomeDto.setDate(AppUtils.createDate());
 	incomeDto.setIncomeType(AppConstant.INCOME_TYPE_DI.getStringValue());
 	BeanUtils.copyProperties(incomeDto, incomeModel);
+	incomeRepository.save(incomeModel);
 	return incomeModel;
 }
+
+
+
 }
