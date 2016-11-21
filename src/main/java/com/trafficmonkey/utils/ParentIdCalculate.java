@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
 import com.trafficmonkey.DTO.ParentChildDTO;
@@ -19,10 +20,11 @@ public class ParentIdCalculate {
 	
 	public Long returnParentId(ParentChildDTO parentChildDto){
 		Long parentId;
-	ArrayList<ParentChildModel> parentModel=parentChildRepository.findByparentIdAndPosition(parentChildDto.getParentId(), parentChildDto.getPosition());
-	if(parentModel.size()>=1 )
+		ParentChildDTO parentchildDto1 = null ;
+ ParentChildModel parentModel=parentChildRepository.findByparentIdAndPosition(parentChildDto.getParentId(), parentChildDto.getPosition());
+	if(parentModel!=null && parentModel.getId()!=null )
 	{
-		Collections.sort(parentModel, new Comparator<ParentChildModel>() {
+		/*Collections.sort(parentModel, new Comparator<ParentChildModel>() {
 		    @Override
 		    public int compare(ParentChildModel o1, ParentChildModel o2) {
 		        return o1.getId().compareTo(
@@ -32,9 +34,20 @@ public class ParentIdCalculate {
 			
 		});
 		
-	 parentId=parentModel.get(parentModel.size()-1).getRegistration().getId();
-	return parentId;
+	 parentId=parentModel.get(parentModel.size()-1).getRegistration().getId();*/
+		
+		parentchildDto1 = new ParentChildDTO();
+		BeanUtils.copyProperties(parentModel, parentchildDto1);
+		parentchildDto1.setParentId(parentModel.getId());
+	    return returnParentId(parentchildDto1);
+	
 	}
+	
+	  /* else if(parentModel.getRegistration()==null){
+		
+		  return parentchildDto.getParentId();
+	}*/
+		
 	else {
 		parentId=parentChildDto.getParentId();
 		return parentId;
