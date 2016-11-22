@@ -1,7 +1,7 @@
 mainApp.controller('TodayTaskCtrl', ['$scope','todayTaskService', function($scope,todayTaskService) {
 	
 	$scope.getCurrentSelection = function(rowEntity) {
-		console.log("halo");
+		
 		var workAssigment={'linkId':rowEntity.id,'status':true,'userId':JSON.parse(window.sessionStorage.getItem('loggedInUserId')).USER.registration.id};
 				todayTaskService.updateStatus(workAssigment).then(
 			function(d) {

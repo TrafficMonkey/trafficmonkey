@@ -19,9 +19,9 @@ public interface ParentChildRepository extends JpaRepository<ParentChildModel, L
 	  //@Query("SELECT a FROM ParentChildModel a INNER JOIN a.registration b ON a.parentId = b.id WHERE (b.id = :parentId) OR b.parent_id= :parentId")
 	  
 	  
-	  @Query(value = "SELECT  a.* FROM parent_child a inner join parent_child b  on   a.parent_id= b.registration_id   where (b.registration_id=?1)  or b.parent_id =?1", nativeQuery = true)
-	  List<ParentChildModel> findByParentId(@Param("parentId") Long parentId);
+	  @Query(value = "SELECT GROUP_CONCAT(lv SEPARATOR ',') FROM (SELECT @pv \\:=(SELECT GROUP_CONCAT(registration_id SEPARATOR ',') FROM parent_child WHERE parent_id IN (@pv)) AS lv FROM parent_child JOIN(SELECT @pv \\:=?1)tmp WHERE parent_id IN (@pv)) a ;", nativeQuery = true)
+	 String findByParentId(@Param("parentId") Long parentId);
 	  
-	  
+	// ParentChildModel findByRegistration(Long id);
 	  
 }
