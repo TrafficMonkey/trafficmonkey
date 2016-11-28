@@ -15,4 +15,5 @@ public interface RegistrationService {
 	void saveProfileImage(Blob profileImg , Long Id);
 	Long findReferralUserId(String referralId);
 	IncomeModel saveDirectReferral(Long referralId, ParentChildModel parentChildModel);
+	 void saveBinaryIncome(ParentChildModel parentChildMode);
 }

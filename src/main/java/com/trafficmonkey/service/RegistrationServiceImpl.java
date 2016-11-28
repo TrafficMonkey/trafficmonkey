@@ -116,11 +116,17 @@ public IncomeModel saveDirectReferral(Long referralId, ParentChildModel parentCh
 	IncomeModel incomeModel=new IncomeModel();
 	incomeDto.setUserId(parentChildMode.getRegistration().getId());
 	incomeDto.setReferralId(referralId);
+	incomeDto.setStatus(false);
 	incomeDto.setDate(AppUtils.createDate());
 	incomeDto.setIncomeType(AppConstant.INCOME_TYPE_DI.getStringValue());
 	BeanUtils.copyProperties(incomeDto, incomeModel);
 	incomeRepository.save(incomeModel);
 	return incomeModel;
+}
+public void saveBinaryIncome(ParentChildModel parentChildMode)
+{
+	parentIdCalculate.generateBinaryIncome(parentChildMode.getRegistration().getId(), parentChildMode.getSponsorId(), parentChildMode.getPosition(), parentChildMode.getRegistration().getId());
+
 }
 
 

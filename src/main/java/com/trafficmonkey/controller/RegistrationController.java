@@ -81,9 +81,11 @@ public class RegistrationController extends BaseRestController {
 		//Long parentId=parentChildDto.getRegistration().getLogin().getEmail();
 		mailService.sendEmail(parentChildDto.getRegistration());
 		ParentChildModel parentChildModel= registrationService.saveUser(parentChildDto);
-		if(parentChildDto.getSponsorId()!=null){
+		if(!StringUtils.isEmpty((parentChildDto.getSponsorId()))){
 			 Long Id=registrationService.findReferralUserId(parentChildDto.getSponsorId());
 			 registrationService.saveDirectReferral(Id, parentChildModel);
+			 registrationService.saveBinaryIncome(parentChildModel);
+			 
 		}
 		HttpHeaders headers = new HttpHeaders();
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);

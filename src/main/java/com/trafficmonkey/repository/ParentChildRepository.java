@@ -23,5 +23,7 @@ public interface ParentChildRepository extends JpaRepository<ParentChildModel, L
 	 String findByParentId(@Param("parentId") Long parentId);
 	  
 	// ParentChildModel findByRegistration(Long id);
+	  @Query("SELECT p FROM ParentChildModel p WHERE p.registration.id=:id")
+	  ParentChildModel findByRegistrationId(@Param("id") Long id);
 	  
 }

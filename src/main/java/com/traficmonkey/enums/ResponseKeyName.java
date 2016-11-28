@@ -17,6 +17,8 @@ public enum ResponseKeyName {
  USER,
  SPONSOR,
  BINARYTREE,
- TODAY_TASK
+ TODAY_TASK,
+ INCOME_DETAILS
+ 
 	
   }

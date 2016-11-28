@@ -25,9 +25,10 @@ public class IncomeModel {
 	@Column(name="date")
 	private String date;
 	@Column(name="income_type")
-	private String IncomeType;
+	private String incomeType;
 	
-	
+	@Column(name="node")
+	private String node;
 	public Long getUserId() {
 		return userId;
 	}
@@ -64,11 +65,18 @@ public class IncomeModel {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	public String getNode() {
+		return node;
+	}
+	public void setNode(String node) {
+		this.node = node;
+	}
 	public String getIncomeType() {
-		return IncomeType;
+		return incomeType;
 	}
 	public void setIncomeType(String incomeType) {
-		IncomeType = incomeType;
+		this.incomeType = incomeType;
 	}
 	
 
