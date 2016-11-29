@@ -148,7 +148,8 @@ $urlRouterProvider.otherwise('/home');
     
         .state('dashboard.account', {
             url: '/account',
-            templateUrl: 'static/pages/account.html'
+            templateUrl: 'static/pages/account.html',
+            controller:'AccountCtrl'
             
         })
          .state('dashboard.downLine', {

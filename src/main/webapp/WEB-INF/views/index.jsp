@@ -92,6 +92,7 @@
 	<script src="static/js/controller/todayTask_controller.js"></script>
 	<script src="static/js/controller/binaryIncome_contoller.js"></script>
 	<script src="static/js/controller/directReferral_controller.js"></script>
+	<script src="static/js/controller/account_controller.js"></script>
 	
 	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
@@ -101,6 +102,7 @@
 	<script src="static/js/service/todayTask_service.js"></script>
 	<script src="static/js/controller/downLine_controller.js"></script>
 	<script src="static/js/service/myIncome_service.js"></script>
+	<script src="static/js/service/account_service.js"></script>
 	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script  src="static/JSlib/jquery.orgchart.js"></script>
