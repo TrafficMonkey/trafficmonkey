@@ -5,9 +5,9 @@ mainApp.factory('AccountService', ['$http', '$q', function($http, $q){
 	return {
 		
 			
-		    createAccount: function(parentId){
+		saveAccountDetailsOfUser: function(accountDetails){
      		    	//console.log(user);
-					/*return $http.get('http://localhost:8080/trafficmonkey/generateTree?parentId='+parentId)
+					return $http.post('http://localhost:8080/trafficmonkey/accountDetails', accountDetails)
 							.then(
 									function(response){
 										return response.data;
@@ -16,7 +16,7 @@ mainApp.factory('AccountService', ['$http', '$q', function($http, $q){
 										console.error('Error while creating user');
 										return $q.reject(errResponse);
 									}
-							);*/
+							);
 		    },
 		    
 		 

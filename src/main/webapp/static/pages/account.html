@@ -4,7 +4,7 @@
             </div>
             <div class="widget-content">
               <div class="body" >
-               <form  class="form-horizontal" ng-submit="submit()" method="post" name="accountForm">
+               <form  class="form-horizontal"  method="post" name="accountForm">
                 <fieldset>
                  
                   
@@ -14,12 +14,12 @@
                     </div>
                     <div class="col-md-9">
                     <div class="form-group">
-                      <input type="text" ng-model="account.acountHolderName" name="acountHolderName" placeholder="Enter Account Holder Name Here"  class="form-control"    required >
+                      <input type="text" ng-model="account.accountHolderName" name="acountHolderName" placeholder="Enter Account Holder Name Here"  class="form-control" ng-pattern="/^[A-z]+$/"   required >
                     </div>
                      
                     <div class="errorText" ng-show="accountForm.$dirty">
                     <span ng-show="accountForm.acountHolderName.$error.required">This is a required field</span>
-                              
+                     <span ng-show="accountForm.acountHolderName.$invalid">This field is invalid </span>        
                               
                     </div>
                     </div>
@@ -35,11 +35,11 @@
                     </div>
                     <div class="col-md-9">
                     <div class="form-group">
-                      <input type="text" class="form-control" ng-model="account.bankName" id="bank_name" name="bankName"placeholder="Enter Your Bank Name Here"  required >
+                      <input type="text" class="form-control" ng-model="account.bankName" id="bankName" name="bankName"placeholder="Enter Your Bank Name Here"  ng-pattern="/^[A-z]+$/" required >
                     </div>
                                    <div class="errorText" ng-show="accountForm.$dirty">
-                                      <span ng-show="accountForm.bankBranch.$error.required">This is a required field</span>
-                                     <!--  <span ng-show="singUpForm.contact.$invalid">This field is invalid </span> -->
+                                      <span ng-show="accountForm.bankName.$error.required">This is a required field</span>
+                                     <span ng-show="accountForm.bankName.$invalid">This field is invalid </span> 
                                   </div>
                      
                    
@@ -93,12 +93,12 @@
                     </div>
                     <div class="col-md-9">
                     <div class="form-group">
-                      <input type="text" class="form-control" type="text" ng-model="account.accountNumber" id="account_number"name="accountNumber" placeholder="Enter Your Account Number" required>
+                      <input type="text" class="form-control" type="text" ng-model="account.accountNumber" id="account_number"name="accountNumber" placeholder="Enter Your Account Number" ng-pattern="/[0-9]$/" required>
                     </div>
                         
                                    <div class="errorText" ng-show="accountForm.$dirty">
                                       <span ng-show="accountForm.accountNumber.$error.required">This is a required field</span>
-                                     <!--  <span ng-show="singUpForm.contact.$invalid">This field is invalid </span> -->
+                                       <span ng-show="accountForm.accountNumber.$invalid">This field is invalid </span> 
                                   </div>                      
                     </div>
                   </div>
@@ -123,96 +123,7 @@
                   </div>
                   
                   
-                    
-                  <!--   <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="normal-field" class="control-label">Sponsor Name</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Sponsor Name"ng-model="user.sponsorName" name="sponcerName" disabled>
-                    </div>
-                    </div>
-                  </div>
-                  
-                  
-                     
-                    <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="normal-field" class="control-label">SELECT POSITION</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                    <select  class="form-control" style="width:100%; height:47px;" ng-model="user.position" name="position" ng-disabled="user.sponsorId===''">
-                            <option value ="" selected>SELECT POSITION</option>	
-                            <option value ="Left">Left</option>
-                            <option value ="Right">Right</option>
-                        </select>
-                    </div>
-                    </div>
-                  </div>
-                  
-                     
-                    <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="normal-field" class="control-label">Select Plan Type</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                     <select  class="form-control" ng-model="user.registration.planType" name="planType" style="width:100%; height:47px;margin-top:10px;">
-                            <option value ="STP-10">STP-10</option>
-                            <option value ="STP-20">STP-20</option>
-                            <option value ="STP-50">STP-50</option>
-                            <option value ="STP-100">STP-100</option>
-                        </select>
-                    </div>
-                    </div>
-                  </div>
-                  
-                  <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="password-field" class="control-label">Password</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                      <div class="input-group"> <span class="input-group-addon"><i class="icon-lock"></i></span>
-                        <input type="password"  class="form-control"   ng-model="user.registration.login.password" name="password" placeholder="Enter Your Password Here" required>
-                      </div>
-                      <div class="errorText" ng-show="singUpForm.$dirty">
-                         <span ng-show="singUpForm.password.$error.required">Password  is a required field</span>
-                 
-                                  </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  
-                   <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="password-field" class="control-label">Retype Your Password</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                      <div class="input-group"> <span class="input-group-addon"><i class="icon-lock"></i></span>
-                        <input type="password"  class="form-control"   placeholder="Retype Your Password Here" ng-model="SignUpCtrl.user.reTypePassword" name="reTypePassword" required>
-                      </div>
-                    
-                      </div>
-                    </div>
-                  </div>
-                  
-             <div class="control-group">
-                  <div class="col-md-3">
-                    <label for="normal-field" class="control-label">Terms and condition</label>
-                    </div>
-                    <div class="col-md-9">
-                    <div class="form-group">
-                      <input type="checkbox" value="" ng-model="user.termsAndCondition">I have read given Website Details and agree to the <a href="#">Terms and Conditions</a>
-                    </div>
-                                              
-                    </div>
-                  </div>
-              -->
+              
                 
                 </fieldset>
                 <div class="form-actions">
