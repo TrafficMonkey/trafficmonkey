@@ -193,6 +193,10 @@ $urlRouterProvider.otherwise('/home');
 }]);
 
 
+mainApp.controller('IndexCtrl', ['$scope', function($scope) {
+	$scope.id=window.sessionStorage.getItem('loggedInUserId');
+	console.log($scope.id);
 
+}])
 
 

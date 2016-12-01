@@ -13,4 +13,26 @@ mainApp.controller('AccountCtrl', ['$scope','AccountService', function($scope,Ac
 		}
 		)
 	}
+	
+	 angular.element(document).ready(function () {
+
+			
+		 AccountService.getUserAccountDetails(JSON.parse(window.sessionStorage
+					.getItem('loggedInUserId')).USER.registration.id)
+	 	.then(
+	 		function(d) {
+					console.log(d);
+					
+					
+					 $scope.account=d.ACCOUNT_DETAILS;
+
+		               
+					
+				},
+				
+				function(errResponse){}
+				);
+		   
+		});
+
 }])

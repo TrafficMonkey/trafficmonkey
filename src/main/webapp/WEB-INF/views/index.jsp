@@ -19,7 +19,7 @@
 
 <body >
 
-	<div ng-app="mainApp" >
+	<div ng-app="mainApp"  ng-controller="IndexCtrl">
 	<div class="container">
 		<div class="top-navbar header b-b">
 			<a href="#home" class="navbar-brand "> TrafficMonkey.com </a>
@@ -29,6 +29,7 @@
 					class=" icon-bar"></span>
 			</button>
 			<div >
+			hiiiii{{id}}
 				<ul class=" nav navbar-nav">
 					<li><a ui-sref="home">Home</a></li>
 					<li><a ui-sref="aboutUs">About us</a></li>
