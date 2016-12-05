@@ -15,7 +15,9 @@ public enum AppConstant {
 	
 	INCOME_TYPE_DI_AMMOUNT(2000),
 	NODE_TYPE_LEFT("Left"),
-	NODE_TYPE_RIGHT("Right")
+	NODE_TYPE_RIGHT("Right"),
+	ROLE_TYPE_ADMIN("ADMIN"),
+	ROLE_TYPE_USER("USER")
 	;
 	private  int value=0;
     

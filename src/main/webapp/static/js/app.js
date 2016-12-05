@@ -186,6 +186,15 @@ $urlRouterProvider.otherwise('/home');
             controller:'BinaryIncomeCtrl'
             
         })
+        
+        
+        
+        .state('dashboard.totatPayment', {
+        url: '/totalPayment',
+        templateUrl: 'static/pages/totalpayment.html'
+        	,controller:'TotalpaymentCtrl'
+        
+    })
     ;
     
     

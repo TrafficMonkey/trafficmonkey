@@ -11,8 +11,8 @@
 
   <div class="left-nav">
     <div id="side-nav">
-      
-				<ul  id="nav">
+     
+				<ul  id="nav" ng-if="role=='USER'")>
 					<li><a ui-sref=".profile">Profile</a></li>
 					<li><a ui-sref=".account"> My Account</a></li>
 					<li><a ui-sref=".downLine" >My DownLine</a></li>
@@ -23,6 +23,16 @@
 					<li><a ui-sref=".binaryIncome" >My Binary Income </a></li>
 					<li><a ui-sref=".directReferralIncome" >My Direct Referral  Income </a></li>
 					<li><a ui-sref=".totalPayIncome" >My Total Income </a></li>
+				</ul>
+				
+				<ul  id="nav" ng-if="role=='ADMIN'">
+					
+					<li><a ui-sref=".link"> Add Link</a></li>
+				
+					
+					<li style="height:500PX;"><a ui-sref=".totatPayment" >Total Payment </a></li>
+					
+					
 				</ul>
 			</div>
 		</div>

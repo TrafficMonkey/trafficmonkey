@@ -33,8 +33,12 @@ mainApp
 																			.stringify(d));
 													commonService
 															.setdataDetails(d.USER);
-													$state
-															.go('dashboard.profile')
+													if(d.USER.registration.login.role=="USER"){
+													$state.go('dashboard.profile');
+													}
+													else{
+														$state.go('dashboard');
+													}
 												},
 												function(errResponse) {
 													console

@@ -27,6 +27,7 @@ import com.trafficmonkey.model.ParentChildModel;
 import com.trafficmonkey.model.RegistrationModel;
 import com.trafficmonkey.service.ParentChildService;
 import com.trafficmonkey.service.RegistrationService;
+import com.traficmonkey.enums.AppConstant;
 
 /**
  * Authenticate a user from the database.
@@ -51,7 +52,7 @@ public class UserDetailsService implements org.springframework.security.core.use
   public UserDetails loadUserByUsername(final String userNameForAuthentication) {
     //log.debug("Authenticating {}", userNameForAuthentication);
 	  
-    ParentChildDTO  user=null;
+     ParentChildDTO  user=null;
     //Get userNameForAuthentication as the format of email_accountid
     String[] tokens = StringUtils.split(userNameForAuthentication, "_");
 
@@ -69,7 +70,7 @@ public class UserDetailsService implements org.springframework.security.core.use
       List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
 
       
-      grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+      grantedAuthorities.add(new SimpleGrantedAuthority(userProfile.getRegistration().getLoginModel().getRole()));
 
       //Map user account profile from Database into user dto
      user = new ParentChildDTO();
@@ -84,7 +85,12 @@ public class UserDetailsService implements org.springframework.security.core.use
       LoginDTO loginDTO = new LoginDTO();
       loginDTO.setEmail(userProfile.getRegistration().getLoginModel().getEmail());
       loginDTO.setPassword(userProfile.getRegistration().getLoginModel().getPassword());
+      loginDTO.setRole(userProfile.getRegistration().getLoginModel().getRole());
+      
       RegistrationDTO registrationDTO=new RegistrationDTO();
+      
+      if(userProfile.getRegistration().getLoginModel().getRole().equals(AppConstant.ROLE_TYPE_USER.getStringValue()))
+      {
       registrationDTO.setId(userProfile.getRegistration().getId());
       registrationDTO.setName(userProfile.getRegistration().getName());
       registrationDTO.setSponsorId(userProfile.getRegistration().getSponsorId());
@@ -103,6 +109,7 @@ public class UserDetailsService implements org.springframework.security.core.use
       {
     	  registrationDTO.setProfileImage("".getBytes());  
       }
+    }
       registrationDTO.setLogin(loginDTO);
       user.setRegistration(registrationDTO);
       
@@ -110,7 +117,7 @@ public class UserDetailsService implements org.springframework.security.core.use
       log.error("Userprofile not found");
       throw new UsernameNotFoundException("User " + lowercaseEmailLogin + " was not found in the " + "database");
     }
-
+  
     return  user;
   }
 

@@ -48,5 +48,12 @@ public class MyIncomeServiceImpl implements MyIncomeService {
 	     }
 		return incomeDetailsDto;
 	}
-
+public  IncomeModel getDirectReferralDetails(){
+	List<IncomeModel> incomeModel=incomeRepository.findByStatusAndIncomeType(false, AppConstant.INCOME_TYPE_DI.getStringValue());
+	
+	List<IncomeModel> incomeModelBinaryIncome=incomeRepository.findByStatusAndIncomeType(false, AppConstant.INCOME_TYPE_BINARY.getStringValue());
+	
+	
+	return null;
+}
 }

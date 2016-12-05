@@ -5,6 +5,9 @@ public class LoginDTO {
 	private String email;
 	private String password;
 	private Boolean isRememberMe;
+	private String role;
+	
+	
 	public String getEmail() {
 		return email;
 	}
@@ -22,5 +25,11 @@ public class LoginDTO {
 	}
 	public void setRememberMe(Boolean isRememberMe) {
 		this.isRememberMe = isRememberMe;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 }
