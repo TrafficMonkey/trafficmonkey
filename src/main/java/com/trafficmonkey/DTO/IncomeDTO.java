@@ -8,6 +8,8 @@ public class IncomeDTO {
 	private String neftNumber;
 	private String date;
 	private String IncomeType;
+	private String name;
+	
 	
 	public Long getId() {
 		return id;
@@ -50,5 +52,11 @@ public class IncomeDTO {
 	}
 	public void setIncomeType(String incomeType) {
 		IncomeType = incomeType;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
