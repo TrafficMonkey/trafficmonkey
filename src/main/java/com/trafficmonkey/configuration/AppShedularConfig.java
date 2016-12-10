@@ -12,11 +12,11 @@ import com.trafficmonkey.utils.ShedularForGenratePayment;
 
 @Configuration
 @EnableScheduling
-public class AppShedularConfig {
+public class AppShedularConfig {/*
 
 @Bean
 public ShedularForGenratePayment myTask(){
 	return new ShedularForGenratePayment();
 }
 
-}
+*/}

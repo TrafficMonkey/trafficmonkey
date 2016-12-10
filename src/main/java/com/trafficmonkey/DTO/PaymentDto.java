@@ -8,7 +8,7 @@ public class PaymentDto {
 	private float directReferralIncome;
 	private float workAssigmentIncome;
 	private float totalIncome;
-	private int totalPayoutIncome;
+	private float totalPayoutIncome;
 	private float tds;
 	private float adminTax;
 	private int accountNumber;
@@ -51,10 +51,10 @@ public class PaymentDto {
 	public void setTotalIncome(float totalIncome) {
 		this.totalIncome = totalIncome;
 	}
-	public int getTotalPayoutIncome() {
+	public float getTotalPayoutIncome() {
 		return totalPayoutIncome;
 	}
-	public void setTotalPayoutIncome(int totalPayoutIncome) {
+	public void setTotalPayoutIncome(float totalPayoutIncome) {
 		this.totalPayoutIncome = totalPayoutIncome;
 	}
 	public float getTds() {

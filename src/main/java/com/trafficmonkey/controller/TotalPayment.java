@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.trafficmonkey.service.MyIncomeService;
 
 @RestController
-public class TotalPayment extends BaseRestController {
+public class TotalPayment extends BaseRestController {/*
 	@Inject
 	MyIncomeService myIncomeService;
 	@RequestMapping(value = "/getUserDetails", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,4 +24,4 @@ public class TotalPayment extends BaseRestController {
 		
 	}
 
-}
+*/}

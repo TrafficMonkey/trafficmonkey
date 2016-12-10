@@ -1,5 +1,6 @@
 package com.trafficmonkey.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -10,11 +11,14 @@ import org.springframework.stereotype.Service;
 import com.trafficmonkey.DTO.IncomeDTO;
 import com.trafficmonkey.DTO.IncomeDetailsDTO;
 import com.trafficmonkey.DTO.PaymentDto;
+import com.trafficmonkey.model.AccountModel;
 import com.trafficmonkey.model.IncomeModel;
 import com.trafficmonkey.model.RegistrationModel;
+import com.trafficmonkey.model.WorkAssignmentModel;
 import com.trafficmonkey.repository.AccountRepository;
 import com.trafficmonkey.repository.IncomeRepository;
 import com.trafficmonkey.repository.RegistrationRepository;
+import com.trafficmonkey.repository.WorkAssignmentRepository;
 import com.traficmonkey.enums.AppConstant;
 @Service
 public class MyIncomeServiceImpl implements MyIncomeService {
@@ -24,6 +28,8 @@ public class MyIncomeServiceImpl implements MyIncomeService {
 	RegistrationRepository registrationRepository;
 	@Inject
 	AccountRepository accountRepository;
+	@Inject
+	WorkAssignmentRepository workAssignmentRepository;
 	public IncomeDetailsDTO getIncome(Long refferalId,Boolean status,String incomeType){
 		 IncomeDetailsDTO incomeDetailsDto=new IncomeDetailsDTO();
 		 Long leftCount=0L;
@@ -59,15 +65,26 @@ public class MyIncomeServiceImpl implements MyIncomeService {
 		return incomeDetailsDto;
 	}
 	
-	@Scheduled(fixedRate=1000)
-public  IncomeModel getDirectReferralDetails(){
-	PaymentDto paymentDTO=new PaymentDto();
 	
+public  List<PaymentDto> getPaymentDetails(){
+	
+	List<PaymentDto>paymentDtoLists=new ArrayList<>();
 	int compleateBinery;
 	List<RegistrationModel>list=registrationRepository.findAll();
-	paymentDTO.setUser_id(list.get(0).getId());
-	paymentDTO.setUserName(list.get(0).getName());
+	
 	for(int i=0; i<list.size();i++){
+		PaymentDto paymentDTO=new PaymentDto();
+		AccountModel accountModel=accountRepository.findByUserId(list.get(i).getId());
+		if(accountModel!=null)
+			
+		{
+		paymentDTO.setAccountNumber(accountModel.getAccountNumber());
+		paymentDTO.setBankName(accountModel.getBankName());
+		paymentDTO.setIfscCode(accountModel.getAccountHolderName());
+		paymentDTO.setUser_id(list.get(i).getId());
+		paymentDTO.setUserName(list.get(i).getName());
+		
+		
 		List<IncomeModel> incomeModelForDirectIncome=incomeRepository.findByStatusAndIncomeTypeAndReferralId(false, AppConstant.INCOME_TYPE_DI.getStringValue(),list.get(i).getId());
 		paymentDTO.setDirectReferralIncome(incomeModelForDirectIncome.size()*AppConstant.INCOME_TYPE_DI_AMMOUNT.getValue());
 		
@@ -82,11 +99,22 @@ public  IncomeModel getDirectReferralDetails(){
 		}
 		paymentDTO.setCompleteBinary(compleateBinery);
 		paymentDTO.setBinaryIncome(compleateBinery*AppConstant.INCOME_TYPE_BINARY_AMMOUNT.getValue());
-		
+		List<WorkAssignmentModel> workDone=workAssignmentRepository.findByStatus(true);
+		paymentDTO.setWorkAssigmentIncome(workDone.size()*AppConstant.INCOME_TYPE_WORK_AMMOUNT.getValue());
+		float totalAmount=incomeModelForDirectIncome.size()*AppConstant.INCOME_TYPE_DI_AMMOUNT.getValue()
+				           +compleateBinery*AppConstant.INCOME_TYPE_BINARY_AMMOUNT.getValue()
+		                   +workDone.size()*AppConstant.INCOME_TYPE_WORK_AMMOUNT.getValue();
+		paymentDTO.setTotalIncome(totalAmount);
+		paymentDTO.setAdminTax((totalAmount*AppConstant.ADMIN_TAX.getValue())/100);
+		paymentDTO.setTds((totalAmount*AppConstant.TDS_TAX.getValue())/100);
+		paymentDTO.setTotalPayoutIncome(totalAmount-((totalAmount*AppConstant.ADMIN_TAX.getValue())/100+
+				(totalAmount*AppConstant.TDS_TAX.getValue())/100));
+		paymentDtoLists.add(paymentDTO);
+		}
 	}
 	
 	
 	
-	return null;
+	return paymentDtoLists;
 }
 }
