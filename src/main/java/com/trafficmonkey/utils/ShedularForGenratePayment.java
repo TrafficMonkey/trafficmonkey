@@ -14,13 +14,16 @@ import com.trafficmonkey.service.MyIncomeService;
 public class ShedularForGenratePayment {
 	@Inject
 	MyIncomeService myIncomeService;
-	@Scheduled(cron = "0 30 2 ? * SUN")
- public void ShedularForCreateExclForPayment(){
+	@Inject
+	CreateEXCELForPayment createXls;
+	@Scheduled(cron="0 25 00 * * MON")
+ public void ShedularForCreateExclForPayment() throws Exception{
+		System.out.println("hi===++>>>>>>>>>>>>>>>>>>>>.");
 		List<PaymentDto> paymentDtoList=myIncomeService.getPaymentDetails();
 		for(int i=0;i<paymentDtoList.size();i++){
 			System.out.println(paymentDtoList.get(i).getDirectReferralIncome());
 			System.out.println(paymentDtoList.get(i).getBinaryIncome());
 		}
-		
+		createXls.buildExcelDocument(paymentDtoList);
 	}
 }
