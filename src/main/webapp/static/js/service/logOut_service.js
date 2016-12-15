@@ -1,13 +1,14 @@
 'use strict';
 
-mainApp.factory('TotalPaymentService', ['$http', '$q', function($http, $q){
+mainApp.factory('logoutService', ['$http', '$q','$state', function($http, $q,$state){
 
 	return {
 		
-			
-		    getUserDetailsForPayment: function(){
+		logOutUser: function(accountDetails){
+			console.log("In Log out services ");
+			state.go("loginPage");
      		    	//console.log(user);
-					return $http.get('http://localhost:8080/trafficmonkey/getUserDetailsForTotalPayment')
+					/*return $http.post('http://localhost:8080/trafficmonkey/saveAccountDetailsOfUser', accountDetails)
 							.then(
 									function(response){
 										return response.data;
@@ -16,10 +17,10 @@ mainApp.factory('TotalPaymentService', ['$http', '$q', function($http, $q){
 										console.error('Error while creating user');
 										return $q.reject(errResponse);
 									}
-							);
+							);*/
 		    },
 		    
-		 
+		
 		
 	};
 	

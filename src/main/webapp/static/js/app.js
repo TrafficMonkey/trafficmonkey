@@ -95,6 +95,9 @@ $urlRouterProvider.otherwise('/home');
         templateUrl: 'static/pages/plans.html'
         
     })
+    
+    
+    
   .state('termsAndConditions', {
         url: '/termsAndConditions',
         templateUrl: 'static/pages/termsAndConditions.html'
@@ -131,6 +134,12 @@ $urlRouterProvider.otherwise('/home');
     })
     
     
+     .state('logout', {
+        url: '/logOut',
+        controller:'LogOutCtrl'
+        
+    })
+    
      .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'static/pages/dashboard.html'
@@ -142,7 +151,16 @@ $urlRouterProvider.otherwise('/home');
     .state('dashboard.profile', {
             url: '/profile',
             templateUrl: 'static/pages/profile.html',
-            	 controller:'ProfileCtrl'
+            	 controller:'ProfileCtrl',
+            	 resolve:{
+            		 resa:function(){
+            			 if(window.sessionStorage.getItem('loggedInUserId')===null){
+            					$state.go('loginPage');
+            					return
+            				}	 
+            		 }
+            	 }
+            	 
             
         })
     
@@ -202,10 +220,15 @@ $urlRouterProvider.otherwise('/home');
 }]);
 
 
-mainApp.controller('IndexCtrl', ['$scope', function($scope) {
-	$scope.id=window.sessionStorage.getItem('loggedInUserId');
-	console.log($scope.id);
-
+mainApp.controller('IndexCtrl', ['$scope','$state', function($scope,$state) {
+	
+	$scope.$on("MyEvent", function(evt,data){ 
+		  // handler code here 
+		console.log(evt);
+		console.log(data.USER.registration.name);
+		$scope.name=data.USER.registration.name;
+	
+	});
 }])
 
 

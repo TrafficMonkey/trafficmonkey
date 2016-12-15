@@ -14,7 +14,7 @@ import com.trafficmonkey.model.WorkAssignmentModel;
 public interface WorkAssignmentRepository extends JpaRepository<WorkAssignmentModel, Long> {
 	//@Query("SELECT r FROM WorkAssignmentModel r WHERE r.userId=:userId")
 List<WorkAssignmentModel> findByUserIdAndDate(Long userId,String date);
-
+List<WorkAssignmentModel>findByStatus(Boolean status);
 WorkAssignmentModel findBylinkIdAndUserIdAndDate(Long LinkId,Long userId,String date);
 
 @Modifying 

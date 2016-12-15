@@ -25,7 +25,7 @@ mainApp
 												function(d) {
 
 													$rootScope.test = d
-
+													$scope.$emit("MyEvent",d);
 													window.sessionStorage
 															.setItem(
 																	'loggedInUserId',
@@ -37,7 +37,7 @@ mainApp
 													$state.go('dashboard.profile');
 													}
 													else{
-														$state.go('dashboard');
+														$state.go('dashboard.totatPayment');
 													}
 												},
 												function(errResponse) {

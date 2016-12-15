@@ -28,6 +28,7 @@
 				<span class=" icon-bar"></span> <span class=" icon-bar"></span> <span
 					class=" icon-bar"></span>
 			</button>
+			
 			<div >
 		
 				<ul class=" nav navbar-nav">
@@ -39,9 +40,15 @@
 					<li><a ui-sref="fAQ">FAQ</a></li>
 					<li><a ui-sref="contactUs">Contact us</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
+				<ul ng-if="name==null" class="nav navbar-nav navbar-right">
+				
 					<li><a ui-sref="signUp"> Signup</a></li>
 					<li><a ui-sref="loginPage">Log In </a></li>
+				</ul>
+				<ul ng-if="name!=null" class="nav navbar-nav navbar-right">
+				
+					<li><a > {{name}}</a></li>
+					<li><a ui-sref="logout">logout </a></li>
 				</ul>
 			</div>
 		</div>
@@ -95,6 +102,7 @@
 	<script src="static/js/controller/directReferral_controller.js"></script>
 	<script src="static/js/controller/account_controller.js"></script>
 	<script src="static/js/controller/totalPayment_controller.js"></script>
+	<script src="static/js/controller/logout_controller.js"></script>
 	
 	<script src="static/js/service/dashboard_service.js"></script>
 	<script src="static/js/service/signup_services.js"></script>
@@ -106,7 +114,7 @@
 	<script src="static/js/service/myIncome_service.js"></script>
 	<script src="static/js/service/account_service.js"></script>
 	<script src="static/js/service/totalPayment_service.js"></script>
-	
+	<script src="static/js/service/logOut_service.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script  src="static/JSlib/jquery.orgchart.js"></script>
      <script  src="static/JSlib/bootstrap-tabcollapse.js"></script>

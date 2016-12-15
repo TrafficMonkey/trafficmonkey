@@ -109,6 +109,7 @@ public  List<PaymentDto> getPaymentDetails(){
 		paymentDTO.setTds((totalAmount*AppConstant.TDS_TAX.getValue())/100);
 		paymentDTO.setTotalPayoutIncome(totalAmount-((totalAmount*AppConstant.ADMIN_TAX.getValue())/100+
 				(totalAmount*AppConstant.TDS_TAX.getValue())/100));
+		paymentDTO.setStatus(false);
 		paymentDtoLists.add(paymentDTO);
 		}
 	}

@@ -1,7 +1,19 @@
-package com.trafficmonkey.DTO;
+package com.trafficmonkey.model;
 
-public class PaymentDto {
-	private Long id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="paymentDetail")
+public class PaymentModel {
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id" ,unique=true,nullable=false) 
+    private Long id;
 	private Long user_id;
 	private String userName;
 	private float binaryIncome;
@@ -12,24 +24,18 @@ public class PaymentDto {
 	private float totalPayoutIncome;
 	private float tds;
 	private float adminTax;
-	private int accountNumber;
-	private String bankName;
-	private String ifscCode;
 	private Boolean status;
-	
-	
-	
 	public Long getUser_id() {
 		return user_id;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public float getBinaryIncome() {
 		return binaryIncome;
@@ -79,29 +85,11 @@ public class PaymentDto {
 	public void setAdminTax(float adminTax) {
 		this.adminTax = adminTax;
 	}
-	public String getUserName() {
-		return userName;
+	public Long getId() {
+		return id;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public int getAccountNumber() {
-		return accountNumber;
-	}
-	public void setAccountNumber(int accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	public String getBankName() {
-		return bankName;
-	}
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-	public String getIfscCode() {
-		return ifscCode;
-	}
-	public void setIfscCode(String ifscCode) {
-		this.ifscCode = ifscCode;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	public Boolean getStatus() {
 		return status;
@@ -109,6 +97,6 @@ public class PaymentDto {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
+	
+	
 }
-	
-	

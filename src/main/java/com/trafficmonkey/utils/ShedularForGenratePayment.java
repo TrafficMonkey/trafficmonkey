@@ -16,14 +16,11 @@ public class ShedularForGenratePayment {
 	MyIncomeService myIncomeService;
 	@Inject
 	CreateEXCELForPayment createXls;
-	@Scheduled(cron="0 25 00 * * MON")
+	@Scheduled(cron="0 00 12 * * TUE")
  public void ShedularForCreateExclForPayment() throws Exception{
 		System.out.println("hi===++>>>>>>>>>>>>>>>>>>>>.");
 		List<PaymentDto> paymentDtoList=myIncomeService.getPaymentDetails();
-		for(int i=0;i<paymentDtoList.size();i++){
-			System.out.println(paymentDtoList.get(i).getDirectReferralIncome());
-			System.out.println(paymentDtoList.get(i).getBinaryIncome());
-		}
-		createXls.buildExcelDocument(paymentDtoList);
+		
+		createXls.buildPaymentDetailTbl(paymentDtoList);
 	}
 }
